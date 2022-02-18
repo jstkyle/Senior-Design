@@ -3,15 +3,11 @@ import numpy as np
 import recognition as rec
 import time
 
-def rescale_frame(frame, percent=75):
-    width = int(frame.shape[1] * percent/ 100)
-    height = int(frame.shape[0] * percent/ 100)
-    dim = (width, height)
-    return cv2.resize(frame, dim, interpolation =cv2.INTER_AREA)
 
-cap = cv2.VideoCapture('video1.mp4')
+cap = cv2.VideoCapture('./Test_Files/video1.mp4')
 
 fps = cap.get(cv2.CAP_PROP_FPS)
+cap.set(cv2.CAP_PROP_FPS, 30)
 print("Frame per second camera: {fps}")
 
 # Number of frames to capture
@@ -28,7 +24,6 @@ while(cap.isOpened()):
     start = time.time()
 
     ret, frame = cap.read()
-    frame = rescale_frame(frame, percent=50)
 
     if frame is None:
         print("No frame")
