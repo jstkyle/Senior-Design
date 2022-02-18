@@ -1,0 +1,65 @@
+import cv2
+import numpy as np
+import recognition as rec
+import time
+
+def rescale_frame(frame, percent=75):
+    width = int(frame.shape[1] * percent/ 100)
+    height = int(frame.shape[0] * percent/ 100)
+    dim = (width, height)
+    return cv2.resize(frame, dim, interpolation =cv2.INTER_AREA)
+
+cap = cv2.VideoCapture('video1.mp4')
+
+fps = cap.get(cv2.CAP_PROP_FPS)
+print("Frame per second camera: {fps}")
+
+# Number of frames to capture
+num_frames = 1
+
+print("Capturing {numframes} frames.")
+
+Total_time = 0
+Total_frames = 0
+
+while(cap.isOpened()):
+    
+    # Start time
+    start = time.time()
+
+    ret, frame = cap.read()
+    frame = rescale_frame(frame, percent=50)
+
+    if frame is None:
+        print("No frame")
+        break
+
+    blur = cv2.GaussianBlur(frame,(5,5),0)
+    edges = rec.detect_yellow(blur)
+    contours = rec.contour(edges)
+    midpoint = rec.steer(rec.detect_poles(contours,frame))
+    rec.dash(frame, midpoint)
+
+    # End time
+    end = time.time()
+
+    # Time elapsed
+    seconds = end - start
+
+    # Average fps
+    Total_time += seconds
+    Total_frames += 1
+
+    # Calculate frames per second
+    fps = num_frames / seconds
+    avg_fps = Total_frames/Total_time
+
+    cv2.putText(frame, "FPS: " + str(round(fps)), (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255))
+    cv2.putText(frame, "AVG_FPS: " + str(round(avg_fps)), (50,80), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255))
+    cv2.imshow("Frame", frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+
+cv2.destroyAllWindows()
