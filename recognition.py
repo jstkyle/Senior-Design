@@ -3,7 +3,7 @@ import numpy as np
 
 
 def detect_yellow(frame):
-    # filter for yellow lane lines
+    # filter for yellow
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     lower_yellow = np.array([30, 100, 100])
     upper_yellow = np.array([40, 255, 255])
@@ -11,14 +11,13 @@ def detect_yellow(frame):
 
     return mask
 
-def find_min_diff(cnts):
-    pass
 
 def contour(edges):
     contours, hierarchy = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    contours = sorted(contours, key=cv2.contourArea, reverse=True)
     if len(contours) >= 2:
         contours = sorted(contours, key=cv2.contourArea, reverse=True)
-        print("C1: ", cv2.contourArea(contours[0]), ", C2: ", 2*cv2.contourArea(contours[1]))
+        #print("C1: ", cv2.contourArea(contours[0]), ", C2: ", 2*cv2.contourArea(contours[1]))
         c1 = cv2.contourArea(contours[0])
         c2 = cv2.contourArea(contours[1])
         if c1 > 2*c2:
@@ -36,7 +35,7 @@ def contour(edges):
     else:
         cnts = ()
 
-    return cnts 
+    return cnts
 
 def detect_poles(cnts, frame):
     midpoints = []
