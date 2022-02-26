@@ -1,66 +1,47 @@
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def detect_yellow(frame):
     # filter for yellow
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_yellow = np.array([30, 100, 100])
+    lower_yellow = np.array([25, 100, 80])
     upper_yellow = np.array([40, 255, 255])
     mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
 
     return mask
 
 
-def contour(edges):
-    contours, hierarchy = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    contours = sorted(contours, key=cv2.contourArea, reverse=True)
-    if len(contours) >= 2:
-        contours = sorted(contours, key=cv2.contourArea, reverse=True)
-        #print("C1: ", cv2.contourArea(contours[0]), ", C2: ", 2*cv2.contourArea(contours[1]))
-        c1 = cv2.contourArea(contours[0])
-        c2 = cv2.contourArea(contours[1])
-        if c1 > 2*c2:
-            cnts = contours[0:1]
-        elif c1 < 1000 or c2 < 1000:
-            cnts = ()
-        else:
-            cnts = contours[0:2]
-    elif len(contours) == 1:
-        c1 = cv2.contourArea(contours[0])
-        if c1 < 1000:
-            cnts = ()
-        else:
-            cnts = contours
-    else:
-        cnts = ()
-
-    return cnts
-
-def detect_poles(cnts, frame):
+def detect_poles(edges, frame):
     midpoints = []
+    pole_cnts = []
+
+    cnts, hier = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     if len(cnts) == 0:
-        return midpoints
+        return midpoints, pole_cnts
 
     for cnt in cnts:
-        # Find bounding rectangle
-        rect = cv2.minAreaRect(cnt) #(center(x, y), (width, height), angle of rotation)
-        box = cv2.boxPoints(rect)
-        box = np.int0(box)
+        if cv2.contourArea(cnt) > 100:
+            # Find bounding rectangle
+            rect = cv2.minAreaRect(cnt) #(center(x, y), (width, height), angle of rotation)
+            box = cv2.boxPoints(rect)
+            box = np.int0(box)
 
-        # Filter out shapes unlike poles
-        rect_width = min(rect[1])
-        rect_height = max(rect[1])
-        #print("Width: ", rect_width, ", 4xHeight: ", rect_height)
-        if rect_height < rect_width*4:
-            continue
-        
-        cv2.drawContours(frame, [box], 0, (255,0,0), 2)
-        # Append poles midpoint
-        midpoints.append(np.int0(rect[0]))
-        cv2.circle(frame, np.int0(rect[0]), radius=1, color=(255, 0, 0), thickness=2)
+            # Filter out shapes unlike poles
+            rect_width = min(rect[1])
+            rect_height = max(rect[1])
+            #print("Width: ", rect_width, ", 4xHeight: ", rect_height)
+            if rect_height < rect_width * 4:
+                continue
+            
+            cv2.drawContours(frame, [box], 0, (255,0,0), 2)
+            # Append poles midpoint
+            midpoints.append(np.int0(rect[0]))
+            pole_cnts.append(cnt)
+            cv2.circle(frame, np.int0(rect[0]), radius=1, color=(255, 0, 0), thickness=2)
     
-    return midpoints
+    return midpoints, pole_cnts
 
 def steer(midpoints):
     if len(midpoints) == 2:
@@ -94,3 +75,25 @@ def dash(frame, midpoint):
 
     # Drawing midpoint
     cv2.circle(frame, midpoint, radius=1, color=(0, 255, 0), thickness=2)
+
+def dist(frame, cnts):
+
+    # Configuration varies between cameras
+    distance = 24  # inches
+    pole_length = 12    # inches
+    pixel_length = 690  # pixels
+    focal_length = (pixel_length * distance) / pole_length
+
+    for cnt in cnts:
+        # Find bounding rectangle
+        rect = cv2.minAreaRect(cnt) #(center(x, y), (width, height), angle of rotation)
+        mid_pnt = np.int0(rect[0])
+        # Get pole height
+        rect_height = max(rect[1])
+
+        D = (pole_length * focal_length) / rect_height
+
+        cv2.putText(frame, str(round(D)) + "\"", (mid_pnt[0]-5, mid_pnt[1]), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,255))
+    
+    
+

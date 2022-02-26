@@ -4,10 +4,10 @@ import recognition as rec
 import time
 
 
-cap = cv2.VideoCapture('./Test_Files/video1.mp4')
+cap = cv2.VideoCapture('./Test_Files/Raspi_video1.mov')
 
 fps = cap.get(cv2.CAP_PROP_FPS)
-cap.set(cv2.CAP_PROP_FPS, 30)
+#cap.set(cv2.CAP_PROP_FPS, 60)
 print("Frame per second camera: {fps}")
 
 # Number of frames to capture
@@ -29,10 +29,11 @@ while(cap.isOpened()):
         print("No frame")
         break
 
-    blur = cv2.GaussianBlur(frame,(5,5),0)
+    blur = cv2.GaussianBlur(frame, (5,5), 0)
     edges = rec.detect_yellow(blur)
-    contours = rec.contour(edges)
-    midpoint = rec.steer(rec.detect_poles(contours,frame))
+    midpoints, pole_cnts = rec.detect_poles(edges, frame)
+    #rec.dist(frame, pole_cnts)
+    midpoint = rec.steer(midpoints)
     rec.dash(frame, midpoint)
 
     # End time
