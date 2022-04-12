@@ -54,6 +54,8 @@ class myThread(threading.Thread):
             dist = rec.dist(frame, self.pole_cnts)
             midpoint = rec.steer(self.midpoints)
 
+
+            '''
             # Calculating FPS
             end = time.time()
             seconds = end - start
@@ -64,8 +66,6 @@ class myThread(threading.Thread):
             cv2.putText(frame, "FPS: " + str(round(fps)), (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255))
             cv2.putText(frame, "AVG_FPS: " + str(round(avg_fps)), (50,80), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255))
             # ---------------------
-
-            '''
             cv2.imshow("Frame", frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
@@ -78,28 +78,23 @@ class myThread(threading.Thread):
 
     def parking_algo(self):
         state = 1
-        is_found = False
         while True:
 
             if state is 1:
-                while is_found is False:
-                    try:
-                        poles = self.pole_cnts
-                        ser.write('l'.encode()) # Start spinning
-                        if poles is 2:
-                            # Stop spinning
-                            ser.write('s'.encode())
-                            is_found = True
-                    except:
-                        print("Exception occured")
+                try:
+                    poles = self.pole_cnts
+                    ser.write('l'.encode()) # Start spinning
+                    while len(poles) is not 2:
+                        print(len(poles))
+
+                    ser.write('s'.encode())
+                    state = state + 1
+                except:
+                    print("Exception occured")
             elif state is 2:
                 pass
             elif state is 3:
                 pass
-            try:
-                print(len(self.pole_cnts))
-            except:
-                print("Exception occured")
 
 
 
