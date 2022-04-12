@@ -88,7 +88,7 @@ class myThread(threading.Thread):
                         ser.write('l'.encode()) # Start spinning
                         if poles is 2:
                             # Stop spinning
-                            ser.write('o'.encode())
+                            ser.write('s'.encode())
                             is_found = True
                     except:
                         print("Exception occured")
