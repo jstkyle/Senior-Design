@@ -1,7 +1,7 @@
 import cv2
 import recognition as rec
 import time
-import serial
+from serial import serial
 import numpy as np
 import threading
 
