@@ -6,6 +6,15 @@ import numpy as np
 import threading
 
 
+ser = serial.Serial(            
+    port='/dev/serial0',
+    baudrate = 115200,
+    parity=serial.PARITY_NONE,
+    stopbits=serial.STOPBITS_ONE,
+    bytesize=serial.EIGHTBITS,
+    timeout=1
+)
+
 class myThread(threading.Thread):
 
     def __init__(self):
@@ -81,16 +90,17 @@ class myThread(threading.Thread):
         while True:
 
             if state is 1:
-                try:
-                    poles = self.pole_cnts
-                    ser.write('l'.encode()) # Start spinning
-                    while len(poles) is not 2:
-                        print(len(poles))
-
-                    ser.write('s'.encode())
-                    state = state + 1
-                except:
-                    print("Exception occured")
+                ser.write('l'.encode()) # Start spinning
+                is_found = False
+                while is_found is False:
+                    try:
+                        poles = self.pole_cnts
+                        if len(poles) == 2:
+                            print("Found Target!!!!!!!")
+                            ser.write('s'.encode())
+                            state = state + 1
+                    except:
+                        print("Exception occured")
             elif state is 2:
                 pass
             elif state is 3:
