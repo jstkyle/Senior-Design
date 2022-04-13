@@ -13,22 +13,42 @@ ser = serial.Serial(
 )
 
 class MyController(Controller): # create a custom class for your controller and>
-    def on_x_press(self): print("on_x_press")
-    def on_x_release(self): print("on_x_release") 
-    def on_triangle_press(self): print("on_triangle_press") 
-    def on_triangle_release(self): print("on_triangle_release") 
-    def on_circle_press(self): print("on_circle_press") 
-    def on_circle_release(self): print("on_circle_release") 
-    def on_square_press(self): print("on_square_press") 
+    def on_x_press(self): 
+        print("on_x_press")
+        ser.write('c'.encode())
+    def on_x_release(self): 
+        print("on_x_release") 
+        ser.write('p'.encode())
+    def on_triangle_press(self): 
+        print("on_triangle_press") 
+        ser.write('o'.encode())
+    def on_triangle_release(self): 
+        print("on_triangle_release")
+        ser.write('p'.encode())
+    def on_circle_press(self): 
+        print("on_circle_press") 
+        ser.write('l'.encode())
+    def on_circle_release(self): 
+        print("on_circle_release") 
+        ser.write('p'.encode())
+    def on_square_press(self): print("on_square_press")
     def on_square_release(self): print("on_square_release") 
     def on_L1_press(self): print("on_L1_press") 
     def on_L1_release(self): print("on_L1_release") 
     def on_L2_press(self, value): print("on_L2_press: ", value) 
     def on_L2_release(self): print("on_L2_release") 
-    def on_R1_press(self): print("on_R1_press") 
-    def on_R1_release(self): print("on_R1_release") 
-    def on_R2_press(self, value): print("on_R2_press: ", value) 
-    def on_R2_release(self): print("on_R2_release") 
+    def on_R1_press(self): 
+        print("on_R1_press")
+        ser.write('e'.encode())
+    def on_R1_release(self):
+        print("on_R1_release") 
+        ser.write('s'.encode())
+    def on_R2_press(self, value):
+        print("on_R2_press: ", value) 
+        ser.write('v'.encode())
+    def on_R2_release(self): 
+        print("on_R2_release") 
+        ser.write('s'.encode())
     def on_up_arrow_press(self):
         print("on_up_arrow_press")
         ser.write('o'.encode())
