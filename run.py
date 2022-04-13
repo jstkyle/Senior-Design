@@ -89,20 +89,37 @@ class myThread(threading.Thread):
         state = 1
         while True:
 
-            if state is 1:
-                ser.write('l'.encode()) # Start spinning
+            if state == 1:
+                print("start spinning")
+                ser.write('l'.encode())
                 is_found = False
                 while is_found is False:
                     try:
                         poles = self.pole_cnts
                         if len(poles) == 2:
-                            print("Found Target!!!!!!!")
-                            ser.write('s'.encode())
-                            state = state + 1
+                            break
                     except:
-                        print("Exception occured")
+                        pass
+
+                print("Found Target!!!!!!!")
+                ser.write('p'.encode())
+                state = state + 1
             elif state is 2:
-                pass
+                print("Going Forward")
+                ser.write('o'.encode())
+                is_reached = False
+                while is_reached is False:
+                    try:
+                        dist = self.dist
+                        print(dist)
+                        if dist <= 5:
+                            break
+                    except:
+                        pass
+
+                print("Arrive at target.")
+                ser.write('p'.encode())
+                state = state + 1
             elif state is 3:
                 pass
 

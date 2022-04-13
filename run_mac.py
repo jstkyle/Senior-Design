@@ -106,7 +106,7 @@ class myThread(threading.Thread):
                         pass
 
                 print("Arrive at target.")
-                state = state + 13
+                state = state + 1
             elif state == 3:
                 pass
 
