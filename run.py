@@ -102,9 +102,9 @@ class myThread(threading.Thread):
                         pass
 
                 print("Found Target!!!!!!!")
-                for i in range(50):
+                for i in range(5):
                     ser.write('p'.encode())
-                time.sleep(10)
+                    time.sleep(1)
                 print("end state 1")
                 state = state + 1
             elif state == 2:
