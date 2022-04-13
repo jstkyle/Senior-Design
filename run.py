@@ -90,8 +90,9 @@ class myThread(threading.Thread):
         while True:
 
             if state == 1:
-                ser.write('p'.encode())
-                time.sleep(3)
+                for i in range(5):
+                    ser.write('p'.encode())
+                    time.sleep(1)
                 print("start spinning")
                 ser.write('l'.encode())
                 
