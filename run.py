@@ -102,7 +102,8 @@ class myThread(threading.Thread):
                         pass
 
                 print("Found Target!!!!!!!")
-                ser.write('p'.encode())
+                for i in range(50):
+                    ser.write('p'.encode())
                 time.sleep(10)
                 print("end state 1")
                 state = state + 1
@@ -114,7 +115,7 @@ class myThread(threading.Thread):
                     try:
                         dist = self.dist
                         print(dist)
-                        if dist <= 5:
+                        if dist <= 30:
                             break
                     except:
                         pass
