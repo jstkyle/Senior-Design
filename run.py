@@ -92,6 +92,7 @@ class myThread(threading.Thread):
             if state == 1:
                 print("start spinning")
                 ser.write('l'.encode())
+                
                 is_found = False
                 while is_found is False:
                     try:
@@ -108,6 +109,7 @@ class myThread(threading.Thread):
                 print("end state 1")
                 state = state + 1
             elif state == 2:
+                ser.write('p'.encode())
                 print("Going Forward")
                 ser.write('o'.encode())
                 is_reached = False
