@@ -93,6 +93,8 @@ class myThread(threading.Thread):
 
                 print("Found Target!!!!!!!")
                 state = state + 1
+                time.sleep(10)
+                print("end state 1")
             elif state == 2:
                 print("Going Forward")
                 is_reached = False
@@ -100,7 +102,7 @@ class myThread(threading.Thread):
                     try:
                         dist = self.dist
                         print(dist)
-                        if dist <= 5:
+                        if dist <= 30:
                             break
                     except:
                         pass

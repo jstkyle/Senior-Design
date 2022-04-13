@@ -32,7 +32,8 @@ while(cap.isOpened()):
     blur = cv2.GaussianBlur(frame, (5,5), 0)
     edges = rec.detect_yellow(blur)
     midpoints, pole_cnts = rec.detect_poles(edges, frame)
-    #rec.dist(frame, pole_cnts)
+    dist = rec.dist(frame, pole_cnts)
+    print(dist)
     midpoint = rec.steer(midpoints)
     rec.dash(frame, midpoint)
 

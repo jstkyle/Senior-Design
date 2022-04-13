@@ -83,6 +83,8 @@ def dist(frame, cnts):
     pixel_length = 690  # pixels
     focal_length = (pixel_length * distance) / pole_length
 
+    D_list = []
+
     for cnt in cnts:
         # Find bounding rectangle
         rect = cv2.minAreaRect(cnt) #(center(x, y), (width, height), angle of rotation)
@@ -91,8 +93,15 @@ def dist(frame, cnts):
         rect_height = max(rect[1])
 
         D = (pole_length * focal_length) / rect_height
+        D_list.append(D)
 
         cv2.putText(frame, str(round(D)) + "\"", (mid_pnt[0]-5, mid_pnt[1]), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,255))
+
+    if len(D_list) == 0:
+        avg_dist = 1000
+    else:
+        avg_dist = (sum(D_list) / len(D_list))
     
+    return avg_dist
     
 
