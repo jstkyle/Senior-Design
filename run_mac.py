@@ -1,9 +1,9 @@
 import cv2
 import recognition as rec
 import time
+import serial
 import numpy as np
 import threading
-
 
 
 class myThread(threading.Thread):
@@ -51,7 +51,7 @@ class myThread(threading.Thread):
             blur = cv2.GaussianBlur(frame, (5,5), 0)
             edges = rec.detect_yellow(blur)
             self.midpoints, self.pole_cnts = rec.detect_poles(edges, frame)
-            self.dist = rec.dist(frame, self.pole_cnts)
+            dist = rec.dist(frame, self.pole_cnts)
             midpoint = rec.steer(self.midpoints)
 
 
@@ -81,7 +81,12 @@ class myThread(threading.Thread):
         while True:
 
             if state == 1:
+                for i in range(5):
+                    print("p")
+                    time.sleep(1)
                 print("start spinning")
+                print("l")
+                
                 is_found = False
                 while is_found is False:
                     try:
@@ -92,11 +97,15 @@ class myThread(threading.Thread):
                         pass
 
                 print("Found Target!!!!!!!")
-                state = state + 1
-                time.sleep(10)
+                for i in range(5):
+                    print("p")
+                    time.sleep(1)
                 print("end state 1")
+                state = state + 1
             elif state == 2:
+                print("p")
                 print("Going Forward")
+                print("o")
                 is_reached = False
                 while is_reached is False:
                     try:
@@ -108,6 +117,7 @@ class myThread(threading.Thread):
                         pass
 
                 print("Arrive at target.")
+                print("p")
                 state = state + 1
             elif state == 3:
                 pass
