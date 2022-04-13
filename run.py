@@ -1,7 +1,7 @@
 import cv2
 import recognition as rec
 import time
-from serial import serial
+import serial
 import numpy as np
 import threading
 
@@ -104,7 +104,7 @@ class myThread(threading.Thread):
                 print("Found Target!!!!!!!")
                 ser.write('p'.encode())
                 state = state + 1
-            elif state is 2:
+            elif state == 2:
                 print("Going Forward")
                 ser.write('o'.encode())
                 is_reached = False
@@ -120,7 +120,7 @@ class myThread(threading.Thread):
                 print("Arrive at target.")
                 ser.write('p'.encode())
                 state = state + 1
-            elif state is 3:
+            elif state == 3:
                 pass
 
 
