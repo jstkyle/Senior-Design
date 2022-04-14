@@ -90,11 +90,8 @@ class myThread(threading.Thread):
         while True:
 
             if state == 1:
-                for i in range(5):
-                    ser.write('stop/'.encode())
-                    time.sleep(1)
                 print("start spinning")
-                ser.write('go/'.encode())
+                ser.write('l'.encode())
                 
                 is_found = False
                 while is_found is False:
@@ -106,15 +103,13 @@ class myThread(threading.Thread):
                         pass
 
                 print("Found Target!!!!!!!")
-                for i in range(5):
-                    ser.write('stop/'.encode())
-                    time.sleep(1)
+                ser.write('p'.encode())
+                time.sleep(3)
                 print("end state 1")
                 state = state + 1
             elif state == 2:
-                ser.write('stop/'.encode())
                 print("Going Forward")
-                ser.write('go/'.encode())
+                ser.write('o'.encode())
                 is_reached = False
                 while is_reached is False:
                     try:
@@ -126,7 +121,7 @@ class myThread(threading.Thread):
                         pass
 
                 print("Arrive at target.")
-                ser.write('stop/'.encode())
+                ser.write('p'.encode())
                 state = state + 1
             elif state == 3:
                 pass
