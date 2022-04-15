@@ -61,7 +61,7 @@ class myThread(threading.Thread):
             edges = rec.detect_yellow(blur)
             self.midpoints, self.pole_cnts = rec.detect_poles(edges, frame)
             self.dist = rec.dist(frame, self.pole_cnts)
-            self.gap = rec.gap(midpoints, pole_cnts)
+            self.gap = rec.gap(self.midpoints, pole_cnts)
             midpoint = rec.steer(self.midpoints)
 
 
