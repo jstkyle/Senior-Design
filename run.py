@@ -60,7 +60,7 @@ class myThread(threading.Thread):
             blur = cv2.GaussianBlur(frame, (5,5), 0)
             edges = rec.detect_yellow(blur)
             self.midpoints, self.pole_cnts = rec.detect_poles(edges, frame)
-            dist = rec.dist(frame, self.pole_cnts)
+            self.dist = rec.dist(frame, self.pole_cnts)
             midpoint = rec.steer(self.midpoints)
 
 
