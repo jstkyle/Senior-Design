@@ -33,6 +33,8 @@ while(cap.isOpened()):
     edges = rec.detect_yellow(blur)
     midpoints, pole_cnts = rec.detect_poles(edges, frame)
     dist = rec.dist(frame, pole_cnts)
+    gap = rec.gap(midpoints, pole_cnts)
+    print(gap)
     print(dist)
     midpoint = rec.steer(midpoints)
     rec.dash(frame, midpoint)

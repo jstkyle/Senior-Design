@@ -61,6 +61,7 @@ class myThread(threading.Thread):
             edges = rec.detect_yellow(blur)
             self.midpoints, self.pole_cnts = rec.detect_poles(edges, frame)
             self.dist = rec.dist(frame, self.pole_cnts)
+            self.gap = rec.gap(midpoints, pole_cnts)
             midpoint = rec.steer(self.midpoints)
 
 
@@ -93,8 +94,7 @@ class myThread(threading.Thread):
                 print("start spinning")
                 ser.write('r'.encode())
                 
-                is_found = False
-                while is_found is False:
+                while True:
                     try:
                         poles = self.pole_cnts
                         if len(poles) == 2:
@@ -110,8 +110,7 @@ class myThread(threading.Thread):
             elif state == 2:
                 print("Going Forward")
                 ser.write('o'.encode())
-                is_reached = False
-                while is_reached is False:
+                while True:
                     try:
                         dist = self.dist
                         print(dist)
@@ -124,7 +123,36 @@ class myThread(threading.Thread):
                 ser.write('p'.encode())
                 state = state + 1
             elif state == 3:
-                pass
+                print("Going Forward")
+                ser.write('l'.encode())
+                while True:
+                    try:
+                        gap = self.gap
+                        print(gap)
+                        if gap is True:
+                            break
+                    except:
+                        pass
+
+                print("Correct entry point.")
+                ser.write('p'.encode())
+                state = state + 1
+            elif state == 4:
+                print("Going Forward")
+                ser.write('o'.encode())
+                while True:
+                    try:
+                        dist = self.dist
+                        print(dist)
+                        if dist <= 70:
+                            break
+                    except:
+                        pass
+
+                print("Arrive at target.")
+                ser.write('p'.encode())
+                state = state + 1
+
 
 
 

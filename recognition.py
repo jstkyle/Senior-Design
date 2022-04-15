@@ -75,6 +75,21 @@ def dash(frame, midpoint):
     # Drawing midpoint
     cv2.circle(frame, midpoint, radius=1, color=(0, 255, 0), thickness=2)
 
+def gap(midpoints, cnts):
+    if len(cnts) == 2:
+        rect1 = cv2.minAreaRect(cnts[0])
+        rect2 = cv2.minAreaRect(cnts[1])
+        rect1_height = max(rect1[1])
+        rect2_height = max(rect2[1])
+        max_height = max(rect1_height, rect2_height)
+
+        gap = abs(np.int0(midpoints[0][0] - midpoints[1][0]))
+        
+        if gap > max_height:
+            return True
+    
+    return False
+
 def dist(frame, cnts):
 
     # Configuration varies between cameras
@@ -91,6 +106,7 @@ def dist(frame, cnts):
         mid_pnt = np.int0(rect[0])
         # Get pole height
         rect_height = max(rect[1])
+
 
         D = (pole_length * focal_length) / rect_height
         D_list.append(D)
