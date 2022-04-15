@@ -91,7 +91,7 @@ def gap(midpoints, cnts):
 
         gap = abs(np.int0(midpoints[0][0] - midpoints[1][0]))
         
-        if gap > 1.1 * max_height:
+        if gap > max_height:
             return True
     
     return False
