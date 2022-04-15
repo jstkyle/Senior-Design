@@ -1,6 +1,5 @@
 import time
 import serial
-import keyboard  # using module keyboard
                
 ser = serial.Serial(            
     port='/dev/serial0',
@@ -11,7 +10,4 @@ ser = serial.Serial(
     timeout=1
 )
 
-
-while True:  # making a loop
-    if keyboard.is_pressed('p'):
-        ser.write('p'.encode())
+ser.write('p'.encode())
