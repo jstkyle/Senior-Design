@@ -121,6 +121,7 @@ class myThread(threading.Thread):
 
                 print("Arrive at target.")
                 ser.write('p'.encode())
+                time.sleep(3)
                 state = state + 1
             elif state == 3:
                 print("Going Forward")
@@ -136,6 +137,7 @@ class myThread(threading.Thread):
 
                 print("Correct entry point.")
                 ser.write('p'.encode())
+                time.sleep(3)
                 state = state + 1
             elif state == 4:
                 print("Going Forward")

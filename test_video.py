@@ -35,7 +35,6 @@ while(cap.isOpened()):
     dist = rec.dist(frame, pole_cnts)
     gap = rec.gap(midpoints, pole_cnts)
     print(gap)
-    print(dist)
     midpoint = rec.steer(midpoints)
     rec.dash(frame, midpoint)
 

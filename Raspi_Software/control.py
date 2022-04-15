@@ -10,4 +10,7 @@ ser = serial.Serial(
     timeout=1
 )
 
-ser.write('p'.encode())
+import keyboard  # using module keyboard
+while True:  # making a loop
+    if keyboard.is_pressed('p'):
+        ser.write('p'.encode())
