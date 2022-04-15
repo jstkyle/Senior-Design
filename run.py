@@ -163,6 +163,29 @@ class myThread(threading.Thread):
                 time.sleep(3)
                 state = state + 1
             elif state == 5:
+                print("Align with midpoint")
+                while True:
+                    try:
+                        target = self.target
+                        print(target)
+                        if target > 10:
+                            ser.write('t'.encode())
+                            time.sleep(0.1)
+                            ser.write('p'.encode())
+                        elif target < -10:
+                            ser.write('r'.encode())
+                            time.sleep(0.1)
+                            ser.write('p'.encode())
+                        else:
+                            break
+                    except:
+                        pass
+                print("Aligned with midpoint!!!!!!!")
+                ser.write('p'.encode())
+                time.sleep(3)
+                state = state + 1
+            '''
+            elif state == 6:
                 print("Going Forward")
                 ser.write('o'.encode())
                 while True:
@@ -177,6 +200,7 @@ class myThread(threading.Thread):
                 print("Arrive at target.")
                 ser.write('p'.encode())
                 state = state + 1
+                '''
 
 
 
