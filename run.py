@@ -147,22 +147,6 @@ class myThread(threading.Thread):
                 time.sleep(3)
                 state = state + 1
             elif state == 4:
-                print("Going Forward")
-                ser.write('l'.encode())
-                while True:
-                    try:
-                        gap = self.gap
-                        print(gap)
-                        if gap is True:
-                            break
-                    except:
-                        pass
-
-                print("Correct entry point.")
-                ser.write('p'.encode())
-                time.sleep(3)
-                state = state + 1
-            elif state == 5:
                 print("Align with midpoint")
                 while True:
                     try:
@@ -181,6 +165,22 @@ class myThread(threading.Thread):
                     except:
                         pass
                 print("Aligned with midpoint!!!!!!!")
+                ser.write('p'.encode())
+                time.sleep(3)
+                state = state + 1
+            elif state == 5:
+                print("Orbit")
+                ser.write('l'.encode())
+                while True:
+                    try:
+                        gap = self.gap
+                        print(gap)
+                        if gap is True:
+                            break
+                    except:
+                        pass
+
+                print("Correct entry point.")
                 ser.write('p'.encode())
                 time.sleep(3)
                 state = state + 1
