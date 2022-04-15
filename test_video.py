@@ -34,9 +34,10 @@ while(cap.isOpened()):
     midpoints, pole_cnts = rec.detect_poles(edges, frame)
     dist = rec.dist(frame, pole_cnts)
     gap = rec.gap(midpoints, pole_cnts)
-    print(gap)
+    
     midpoint = rec.steer(midpoints)
-    rec.dash(frame, midpoint)
+    target = rec.dash(frame, midpoint)
+    print(target)
 
     # End time
     end = time.time()

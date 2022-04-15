@@ -63,6 +63,7 @@ class myThread(threading.Thread):
             self.dist = rec.dist(frame, self.pole_cnts)
             self.gap = rec.gap(self.midpoints, self.pole_cnts)
             midpoint = rec.steer(self.midpoints)
+            self.target = rec.dash(frame, midpoint)
 
 
             '''
@@ -108,6 +109,26 @@ class myThread(threading.Thread):
                 print("end state 1")
                 state = state + 1
             elif state == 2:
+                print("Align with midpoint")
+                while True:
+                    try:
+                        target = self.target
+                        print(target)
+                        if target > 10:
+                            ser.write('t'.encode())
+                            ser.write('p'.encode())
+                        elif target < -10:
+                            ser.write('r'.encode())
+                            ser.write('p'.encode())
+                        else:
+                            break
+                    except:
+                        pass
+                print("Aligned with midpoint!!!!!!!")
+                ser.write('p'.encode())
+                time.sleep(3)
+                state = state + 1
+            elif state == 3:
                 print("Going Forward")
                 ser.write('o'.encode())
                 while True:
@@ -123,7 +144,7 @@ class myThread(threading.Thread):
                 ser.write('p'.encode())
                 time.sleep(3)
                 state = state + 1
-            elif state == 3:
+            elif state == 4:
                 print("Going Forward")
                 ser.write('l'.encode())
                 while True:
@@ -139,7 +160,7 @@ class myThread(threading.Thread):
                 ser.write('p'.encode())
                 time.sleep(3)
                 state = state + 1
-            elif state == 4:
+            elif state == 5:
                 print("Going Forward")
                 ser.write('o'.encode())
                 while True:
