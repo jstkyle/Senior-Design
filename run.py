@@ -91,7 +91,7 @@ class myThread(threading.Thread):
 
             if state == 1:
                 print("start spinning")
-                ser.write('l'.encode())
+                ser.write('r'.encode())
                 
                 is_found = False
                 while is_found is False:
@@ -115,7 +115,7 @@ class myThread(threading.Thread):
                     try:
                         dist = self.dist
                         print(dist)
-                        if dist <= 30:
+                        if dist <= 20:
                             break
                     except:
                         pass
