@@ -38,6 +38,8 @@ while True:
     edges = rec.detect_yellow(blur)
     midpoints, pole_cnts = rec.detect_poles(edges, frame)
     dist = rec.dist(frame, pole_cnts)
+    side = rec.detect_side(pole_cnts)
+    print(side)
     gap = rec.gap(midpoints, pole_cnts)
     #print(gap)
     midpoint = rec.steer(midpoints)

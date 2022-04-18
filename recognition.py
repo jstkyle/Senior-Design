@@ -42,6 +42,26 @@ def detect_poles(edges, frame):
     
     return midpoints, pole_cnts
 
+def detect_side(cnts):
+    if len(cnts) == 2:
+        rect1 = cv2.boundingRect(cnts[0])
+        rect2 = cv2.boundingRect(cnts[1])
+        if rect1[0] < rect2[0]:     # rect1 is left pole
+            if rect1[3] > rect2[3]: # left pole longer
+                return "left"
+            else:                   # right pole longer
+                return "right"
+        else:                       # rect1 is right pole
+            if rect1[3] > rect2[3]: # right pole longer
+                return "right"
+            else:                   # left pole longer
+                return "left"   
+    
+    return "none"
+
+
+
+
 def steer(midpoints):
     if len(midpoints) == 2:
         midpoint = np.int0((midpoints[0] + midpoints[1])/2)
@@ -90,7 +110,7 @@ def gap(midpoints, cnts):
         max_height = max(rect1_height, rect2_height)
 
         gap = abs(np.int0(midpoints[0][0] - midpoints[1][0]))
-        print(gap/max_height)
+        #print(gap/max_height)
         
         if gap > max_height:
             return True

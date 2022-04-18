@@ -61,6 +61,7 @@ class myThread(threading.Thread):
             edges = rec.detect_yellow(blur)
             self.midpoints, self.pole_cnts = rec.detect_poles(edges, frame)
             self.dist = rec.dist(frame, self.pole_cnts)
+            self.side = rec.detect_side(self.pole_cnts)
             self.gap = rec.gap(self.midpoints, self.pole_cnts)
             midpoint = rec.steer(self.midpoints)
             self.target = rec.dash(frame, midpoint)
@@ -147,21 +148,26 @@ class myThread(threading.Thread):
                 time.sleep(3)
                 state = state + 1
             elif state == 4:
-                print("Align with midpoint")
+                print("Aligning...")
                 while True:
                     try:
-                        target = self.target
-                        print(target)
-                        if target > 10:
-                            ser.write('t'.encode())
-                            time.sleep(0.1)
-                            ser.write('p'.encode())
-                        elif target < -10:
-                            ser.write('r'.encode())
-                            time.sleep(0.1)
-                            ser.write('p'.encode())
-                        else:
+                        side = self.side
+                        gap = self.gap
+                        print(side)
+                        if gap is True:
                             break
+                        elif side is "left":
+                            ser.write('b'.encode()) # move right
+                            time.sleep(0.1)
+                            ser.write('l'.encode()) # left rotate
+                            time.sleep(0.1)
+                            ser.write('p'.encode())
+                        elif side is "right":
+                            ser.write('a'.encode()) # move left
+                            time.sleep(0.1)
+                            ser.write('t'.encode()) # right rotate
+                            time.sleep(0.1)
+                            ser.write('p'.encode())
                     except:
                         pass
                 print("Aligned with midpoint!!!!!!!")
