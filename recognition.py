@@ -14,16 +14,16 @@ def detect_yellow(frame):
 def detect_blue(frame):
     # filter for blue
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_blue = np.array([100, 60, 60])
-    upper_blue = np.array([130, 255, 255])
+    lower_blue = np.array([100, 50, 50])
+    upper_blue = np.array([140, 255, 255])
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
 
     return mask
 
 def detect_circle(blur):
-    #mask = detect_blue(blur)
+    mask = detect_blue(blur)
     # Find contours
-    cnts = cv2.findContours(blur, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cnts = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     # Extract contours depending on OpenCV version
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     # Iterate through contours and filter by the number of vertices 
