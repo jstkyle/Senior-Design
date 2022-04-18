@@ -143,7 +143,7 @@ class myThread(threading.Thread):
                     try:
                         dist = self.dist
                         #print(dist)
-                        if dist <= 60:
+                        if dist <= 70:
                             break
                     except:
                         pass
