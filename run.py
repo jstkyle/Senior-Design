@@ -158,15 +158,19 @@ class myThread(threading.Thread):
                             break
                         elif side == "left":
                             ser.write('b'.encode()) # move right
-                            time.sleep(0.1)
+                            time.sleep(0.5)
+                            ser.write('p'.encode())
+                            time.sleep(0.5)
                             ser.write('l'.encode()) # left rotate
-                            time.sleep(0.1)
+                            time.sleep(0.3)
                             ser.write('p'.encode())
                         elif side == "right":
                             ser.write('a'.encode()) # move left
-                            time.sleep(0.1)
+                            time.sleep(0.5)
+                            ser.write('p'.encode())
+                            time.sleep(0.5)
                             ser.write('t'.encode()) # right rotate
-                            time.sleep(0.1)
+                            time.sleep(0.3)
                             ser.write('p'.encode())
                     except:
                         pass
