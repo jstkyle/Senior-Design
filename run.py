@@ -169,7 +169,7 @@ class myThread(threading.Thread):
                             time.sleep(0.5)
                             ser.write('p'.encode())
                             time.sleep(0.5)
-                            ser.write('r'.encode()) # right rotate
+                            ser.write('g'.encode()) # right rotate
                             time.sleep(0.3)
                             ser.write('p'.encode())
                     except:
