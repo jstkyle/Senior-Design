@@ -185,6 +185,7 @@ class myThread(threading.Thread):
                     ser.write('p'.encode())
                     time.sleep(3)
                     state = state + 1
+            '''
             elif state == 5:
                 print("Orbit")
                 ser.write('l'.encode())
@@ -201,7 +202,7 @@ class myThread(threading.Thread):
                 ser.write('p'.encode())
                 time.sleep(3)
                 state = state + 1
-            '''
+            
             elif state == 6:
                 print("Going Forward")
                 ser.write('o'.encode())
