@@ -82,20 +82,20 @@ class myThread(threading.Thread):
         while True:
 
             if self.state == 1:
-                search()
+                self.search()
                 self.state = self.state + 1
             elif self.state == 2:
-                align()
+                self.align()
                 if prev_state == 4:
                     prev_state = 2
                     self.state = 4
                 else:
                     self.state = self.state + 1
             elif self.state == 3:
-                forward()
+                self.forward()
                 self.state = self.state + 1
             elif self.state == 4:
-                corr_entry()
+                self.corr_entry()
                 if prev_state == 4:
                     self.state = 2
                 else:
@@ -104,10 +104,10 @@ class myThread(threading.Thread):
                     time.sleep(3)
                     self.state = self.state + 1
             elif self.state == 5:
-                park()
+                self.park()
                 self.state = self.state + 1
             elif self.state == 6:
-                park_adjust()
+                self.park_adjust()
                 self.state = self.state + 1
                 
     def search():
