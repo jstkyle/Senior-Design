@@ -62,7 +62,7 @@ class myThread(threading.Thread):
             self.midpoints, self.pole_cnts = rec.detect_poles(edges, frame)
             self.dist = rec.dist(frame, self.pole_cnts)
             self.side = rec.detect_side(self.pole_cnts)
-            self.gap = rec.gap(self.midpoints, self.pole_cnts)
+            self.entry = rec.is_entry(self.pole_cnts)
             midpoint = rec.steer(self.midpoints)
             self.target = rec.dash(frame, midpoint)
 
@@ -157,9 +157,9 @@ class myThread(threading.Thread):
                 while True:
                     try:
                         side = self.side
-                        gap = self.gap
+                        entry = self.entry
                         #print(side)
-                        if gap is True:
+                        if entry is True:
                             break
                         elif side == "left":
                             print("slide right")
