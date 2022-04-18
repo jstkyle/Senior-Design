@@ -137,7 +137,7 @@ class myThread(threading.Thread):
                 while True:
                     try:
                         dist = self.dist
-                        print(dist)
+                        #print(dist)
                         if dist <= 50:
                             break
                     except:
@@ -153,7 +153,7 @@ class myThread(threading.Thread):
                     try:
                         side = self.side
                         gap = self.gap
-                        print(side)
+                        #print(side)
                         if gap is True:
                             break
                         elif side == "left":
