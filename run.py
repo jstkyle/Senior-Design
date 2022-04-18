@@ -161,7 +161,7 @@ class myThread(threading.Thread):
                             time.sleep(0.5)
                             ser.write('p'.encode())
                             time.sleep(0.5)
-                            ser.write('l'.encode()) # left rotate
+                            ser.write('r'.encode()) # left rotate
                             time.sleep(0.3)
                             ser.write('p'.encode())
                         elif side == "right":
@@ -169,7 +169,7 @@ class myThread(threading.Thread):
                             time.sleep(0.5)
                             ser.write('p'.encode())
                             time.sleep(0.5)
-                            ser.write('t'.encode()) # right rotate
+                            ser.write('r'.encode()) # right rotate
                             time.sleep(0.3)
                             ser.write('p'.encode())
                     except:

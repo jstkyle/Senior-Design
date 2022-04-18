@@ -103,16 +103,16 @@ def dash(frame, midpoint):
 
 def gap(midpoints, cnts):
     if len(cnts) == 2:
-        rect1 = cv2.minAreaRect(cnts[0])
-        rect2 = cv2.minAreaRect(cnts[1])
-        rect1_height = max(rect1[1])
-        rect2_height = max(rect2[1])
-        max_height = max(rect1_height, rect2_height)
+        rect1 = cv2.boundingRect(cnts[0])
+        rect2 = cv2.boundingRect(cnts[1])
+        rect1_height = max(rect1[3])
+        rect2_height = max(rect2[3])
+        avg_height = (rect1_height + rect2_height) / 2
 
         gap = abs(np.int0(midpoints[0][0] - midpoints[1][0]))
         #print(gap/max_height)
         
-        if gap > max_height:
+        if gap > avg_height:
             return True
     
     return False
