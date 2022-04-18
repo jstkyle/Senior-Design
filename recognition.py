@@ -105,8 +105,8 @@ def gap(midpoints, cnts):
     if len(cnts) == 2:
         rect1 = cv2.boundingRect(cnts[0])
         rect2 = cv2.boundingRect(cnts[1])
-        rect1_height = max(rect1[3])
-        rect2_height = max(rect2[3])
+        rect1_height = rect1[3]
+        rect2_height = rect2[3]
         avg_height = (rect1_height + rect2_height) / 2
 
         gap = abs(np.int0(midpoints[0][0] - midpoints[1][0]))
