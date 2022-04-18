@@ -206,7 +206,7 @@ class myThread(threading.Thread):
         ser.write('p'.encode())
         time.sleep(1)
     
-    def park_adjust():
+    def park_adjust(self):
         print("Going Forward")
         while True:
             try:
