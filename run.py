@@ -132,6 +132,7 @@ class myThread(threading.Thread):
                 ser.write('p'.encode())
                 time.sleep(3)
                 if prev_state == 4:
+                    prev_state == 2
                     state = 4
                 else:
                     state = state + 1
@@ -142,7 +143,7 @@ class myThread(threading.Thread):
                     try:
                         dist = self.dist
                         #print(dist)
-                        if dist <= 50:
+                        if dist <= 60:
                             break
                     except:
                         pass
@@ -158,23 +159,28 @@ class myThread(threading.Thread):
                         side = self.side
                         gap = self.gap
                         #print(side)
-                        prev_state = 4
                         if gap is True:
                             break
                         elif side == "left":
                             ser.write('b'.encode()) # move right
                             time.sleep(0.3)
                             ser.write('p'.encode())
+                            prev_state = 4
                         elif side == "right":
                             ser.write('a'.encode()) # move left
                             time.sleep(0.3)
                             ser.write('p'.encode())
+                            prev_state = 4
                     except:
                         pass
-                print("Aligned with midpoint!!!!!!!")
-                ser.write('p'.encode())
-                time.sleep(3)
-                state = state + 1
+
+                if prev_state == 4:
+                    state = 2
+                else:
+                    print("End state 4!!!!!!!")
+                    ser.write('p'.encode())
+                    time.sleep(3)
+                    state = state + 1
             elif state == 5:
                 print("Orbit")
                 ser.write('l'.encode())
