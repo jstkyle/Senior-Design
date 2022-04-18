@@ -5,7 +5,7 @@ import numpy as np
 def detect_yellow(frame):
     # filter for yellow
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_yellow = np.array([20, 100, 90])
+    lower_yellow = np.array([20, 90, 90])
     upper_yellow = np.array([40, 255, 255])
     mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
 
@@ -43,7 +43,7 @@ def detect_poles(edges, frame):
     return midpoints, pole_cnts
 
 def detect_side(cnts):
-    if len(cnts) == 2:
+    if len(cnts) >= 2:
         rect1 = cv2.boundingRect(cnts[0])
         rect2 = cv2.boundingRect(cnts[1])
         if rect1[0] < rect2[0]:     # rect1 is left pole

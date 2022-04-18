@@ -95,7 +95,7 @@ class myThread(threading.Thread):
 
             if state == 1:
                 print("start spinning")
-                ser.write('r'.encode())
+                ser.write('g'.encode())
                 
                 while True:
                     try:
@@ -121,7 +121,7 @@ class myThread(threading.Thread):
                             time.sleep(0.1)
                             ser.write('p'.encode())
                         elif target < -10:
-                            ser.write('r'.encode())
+                            ser.write('g'.encode())
                             time.sleep(0.1)
                             ser.write('p'.encode())
                         else:
