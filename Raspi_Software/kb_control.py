@@ -1,6 +1,5 @@
 import time
 import serial
-import keyboard
                
 ser = serial.Serial(            
     port='/dev/serial0',
@@ -12,7 +11,5 @@ ser = serial.Serial(
 )
 
 while True:
-    if keyboard.read_key() == "p":
-        print("You pressed p")
-        break
-#ser.write('p'.encode())
+    x = input()
+    ser.write(x.encode())
