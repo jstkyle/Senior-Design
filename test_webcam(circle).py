@@ -34,16 +34,10 @@ while True:
         print("No frame")
         break
 
+    
     blur = cv2.GaussianBlur(frame, (5,5), 0)
-    midpoints, pole_cnts = rec.detect_poles(blur, frame)
     center = rec.detect_circle(blur)
-    dist = rec.dist(frame, pole_cnts)
-    side = rec.detect_side(pole_cnts)
-    entry = rec.is_entry(pole_cnts)
-    print(entry, side)
-    midpoint = rec.steer(midpoints)
-    rec.dash(frame, midpoint)
-
+    cv2.circle(frame, center, 2, (0,0,255), thickness=10)
     # End time
     end = time.time()
 
