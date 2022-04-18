@@ -90,11 +90,12 @@ class myThread(threading.Thread):
 
     def parking_algo(self):
         state = 1
+        prev_state = 0
         while True:
 
             if state == 1:
                 print("start spinning")
-                ser.write('r'.encode())
+                ser.write('t'.encode())
                 
                 while True:
                     try:
@@ -130,7 +131,10 @@ class myThread(threading.Thread):
                 print("Aligned with midpoint!!!!!!!")
                 ser.write('p'.encode())
                 time.sleep(3)
-                state = state + 1
+                if prev_state == 4:
+                    state = 4
+                else:
+                    state = state + 1
             elif state == 3:
                 print("Going Forward")
                 ser.write('o'.encode())
@@ -154,22 +158,15 @@ class myThread(threading.Thread):
                         side = self.side
                         gap = self.gap
                         #print(side)
+                        prev_state = 4
                         if gap is True:
                             break
                         elif side == "left":
                             ser.write('b'.encode()) # move right
-                            time.sleep(0.5)
-                            ser.write('p'.encode())
-                            time.sleep(0.5)
-                            ser.write('r'.encode()) # left rotate
                             time.sleep(0.3)
                             ser.write('p'.encode())
                         elif side == "right":
                             ser.write('a'.encode()) # move left
-                            time.sleep(0.5)
-                            ser.write('p'.encode())
-                            time.sleep(0.5)
-                            ser.write('g'.encode()) # right rotate
                             time.sleep(0.3)
                             ser.write('p'.encode())
                     except:
