@@ -5,7 +5,7 @@ import numpy as np
 
 
 # Start camera
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(-1)
 #cap.set(cv2.CAP_PROP_FPS, 10)
 
 fps = cap.get(cv2.CAP_PROP_FPS)
