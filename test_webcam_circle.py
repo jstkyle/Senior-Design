@@ -5,7 +5,7 @@ import numpy as np
 
 
 # Start camera
-cap = cv2.VideoCapture(2)
+cap = cv2.VideoCapture(0)
 #cap.set(cv2.CAP_PROP_FPS, 10)
 
 fps = cap.get(cv2.CAP_PROP_FPS)
@@ -34,10 +34,19 @@ while True:
         print("No frame")
         break
 
+    mid_x = int(frame.shape[1]/2)
+    mid_y = int(frame.shape[0]/2)
     
     blur = cv2.GaussianBlur(frame, (5,5), 0)
     center = rec.detect_circle(blur)
-    cv2.circle(frame, center, 2, (0,0,255), thickness=10)
+    point = (0,0)
+    dir = rec.park_dir(frame, center)
+    print(center, dir)
+    if center != point:
+        print(f"X diff: {dir[0]}")
+        print(f"Y diff: {dir[1]}")
+    cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
+    cv2.circle(frame, (mid_x, mid_y), 2, (255,0,0), thickness=10)
     # End time
     end = time.time()
 

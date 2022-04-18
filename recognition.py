@@ -28,7 +28,6 @@ def detect_circle(blur):
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     # Iterate through contours and filter by the number of vertices 
     for c in cnts:
-        print(cv2.contourArea(c))
         if cv2.contourArea(c) > 70000:
             perimeter = cv2.arcLength(c, True)
             approx = cv2.approxPolyDP(c, 0.04 * perimeter, True)
@@ -36,9 +35,17 @@ def detect_circle(blur):
                 center, radius = cv2.minEnclosingCircle(c)
                 #cv2.circle(frame, np.int0(center), int(radius), (0,255,0), thickness=2)
                 #cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
-                return np.int0(center)
+                return center
 
     return (0,0)
+
+def park_dir(frame, center):
+    mid_y = int(frame.shape[1]/2)
+    mid_x = int(frame.shape[0]/2)
+    
+    diff = tuple((int(center[0] - mid_x), int(center[1] - mid_y)))
+
+    return diff
 
 def detect_poles(blur, frame):
     edges = detect_yellow(blur)
