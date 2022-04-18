@@ -21,9 +21,9 @@ def detect_blue(frame):
     return mask
 
 def detect_circle(blur):
-    mask = detect_blue(blur)
+    #mask = detect_blue(blur)
     # Find contours
-    cnts = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cnts = cv2.findContours(blur, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     # Extract contours depending on OpenCV version
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     # Iterate through contours and filter by the number of vertices 
