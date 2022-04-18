@@ -95,7 +95,7 @@ class myThread(threading.Thread):
 
             if state == 1:
                 print("start spinning")
-                ser.write('t'.encode())
+                ser.write('r'.encode())
                 
                 while True:
                     try:
@@ -166,11 +166,13 @@ class myThread(threading.Thread):
                             time.sleep(0.3)
                             ser.write('p'.encode())
                             prev_state = 4
+                            break
                         elif side == "right":
                             ser.write('a'.encode()) # move left
                             time.sleep(0.3)
                             ser.write('p'.encode())
                             prev_state = 4
+                            break
                     except:
                         pass
 
