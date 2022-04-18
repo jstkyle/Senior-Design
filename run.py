@@ -98,7 +98,7 @@ class myThread(threading.Thread):
                 while True:
                     try:
                         poles = self.pole_cnts
-                        if len(poles) == 2:
+                        if len(poles) > 1:
                             break
                     except:
                         pass
