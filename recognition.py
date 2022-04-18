@@ -59,6 +59,16 @@ def detect_side(cnts):
     
     return "none"
 
+def is_entry(cnts):
+    if len(cnts) >= 2:
+        rect1 = cv2.boundingRect(cnts[0])
+        rect2 = cv2.boundingRect(cnts[1])
+
+        if rect1[3] > rect2[3] * 0.95 and rect1[3] < rect2[3] * 1.05:
+            return True
+    
+    return False
+
 
 
 
@@ -112,7 +122,7 @@ def gap(midpoints, cnts):
         gap = abs(np.int0(midpoints[0][0] - midpoints[1][0]))
         #print(gap/max_height)
         
-        if gap > avg_height:
+        if gap > 1.1*avg_height:
             return True
     
     return False
