@@ -156,13 +156,13 @@ class myThread(threading.Thread):
                         print(side)
                         if gap is True:
                             break
-                        elif side is "left":
+                        elif side == "left":
                             ser.write('b'.encode()) # move right
                             time.sleep(0.1)
                             ser.write('l'.encode()) # left rotate
                             time.sleep(0.1)
                             ser.write('p'.encode())
-                        elif side is "right":
+                        elif side == "right":
                             ser.write('a'.encode()) # move left
                             time.sleep(0.1)
                             ser.write('t'.encode()) # right rotate
