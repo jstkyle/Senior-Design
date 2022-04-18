@@ -162,12 +162,14 @@ class myThread(threading.Thread):
                         if gap is True:
                             break
                         elif side == "left":
+                            print("slide right")
                             ser.write('b'.encode()) # move right
                             time.sleep(0.3)
                             ser.write('p'.encode())
                             prev_state = 4
                             break
                         elif side == "right":
+                            print("slide left")
                             ser.write('a'.encode()) # move left
                             time.sleep(0.3)
                             ser.write('p'.encode())
