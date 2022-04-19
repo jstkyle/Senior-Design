@@ -233,6 +233,7 @@ class myThread(threading.Thread):
                     ser.write('b'.encode())
                     time.sleep(0.2)
                 
+                time.sleep(0.5)
                 print(x_diff, y_diff)
 
             except:
