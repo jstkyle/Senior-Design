@@ -78,7 +78,7 @@ class myThread(threading.Thread):
         cv2.destroyAllWindows()
 
     def parking_algo(self):
-        self.state = 5
+        self.state = 1
         prev_state = 0
         while True:
 
@@ -107,7 +107,7 @@ class myThread(threading.Thread):
             elif self.state == 5:
                 time.sleep(3)
                 self.park()
-                #self.state = self.state + 1
+                self.state = self.state + 1
             elif self.state == 6:
                 self.park_adjust()
                 self.state = self.state + 1
