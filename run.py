@@ -210,16 +210,21 @@ class myThread(threading.Thread):
         print("Going Forward")
         while True:
             try:
+                nav = []
                 x_diff = self.dir[0]
                 y_diff = self.dir[1]
                 if x_diff < 0:
-                    print("slide left")
+                    #print("slide left")
+                    nav.append('left')
                 elif x_diff > 0:
-                    print("slide right")
-                elif y_diff < 0:
-                    print("slide up")
+                    #print("slide right")
+                    nav.append('right')
+                if y_diff < 0:
+                    #print("slide up")
+                    nav.append('up')
                 elif y_diff > 0:
-                    print("slide down")
+                    #print("slide down")
+                    nav.append('down')
 
             except:
                 pass
