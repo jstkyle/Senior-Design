@@ -198,6 +198,7 @@ class myThread(threading.Thread):
         while True:
             try:
                 center = self.center
+                print(center)
                 if center != (0,0):
                     break
             except:
