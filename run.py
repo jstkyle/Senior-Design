@@ -139,10 +139,12 @@ class myThread(threading.Thread):
                     ser.write('t'.encode())
                     time.sleep(0.05)
                     ser.write('p'.encode())
+                    time.sleep(0.1)
                 elif target < -3:
                     ser.write('g'.encode())
                     time.sleep(0.05)
                     ser.write('p'.encode())
+                    time.sleep(0.1)
                 else:
                     break
             except:
