@@ -132,7 +132,7 @@ def dash(frame, midpoint):
     if len(midpoint) == 0:
         midpoint = [mid_x, mid_y]
         return 0
-    '''
+    
     # Drawing the link
     cv2.line(frame, (mid_x, mid_y), (midpoint[0], mid_y), (0, 0, 255), 2)
     cv2.line(frame, (midpoint[0], mid_y-7), (midpoint[0], mid_y+7), (0, 0, 255), 2)
@@ -142,7 +142,7 @@ def dash(frame, midpoint):
 
     # Drawing midpoint
     cv2.circle(frame, midpoint, radius=1, color=(0, 255, 0), thickness=2)
-    '''
+    
     target = midpoint[0] - mid_x
     
     return target
