@@ -226,7 +226,7 @@ class myThread(threading.Thread):
                     #print("slide down")
                     nav.append('down')
 
-                print(nav)
+                print(x_diff, y_diff)
 
             except:
                 pass
