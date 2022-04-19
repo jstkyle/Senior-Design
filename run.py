@@ -153,7 +153,7 @@ class myThread(threading.Thread):
     
     def forward(self):
         print("Going Forward")
-        ser.write('o'.encode())
+        ser.write('d'.encode())
         while True:
             try:
                 dist = self.dist
