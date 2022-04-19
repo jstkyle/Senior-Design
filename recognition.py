@@ -40,8 +40,8 @@ def detect_circle(blur):
     return (0,0)
 
 def park_dir(frame, center):
-    mid_y = int(frame.shape[1]/2)
-    mid_x = int(frame.shape[0]/2)
+    mid_x = int(frame.shape[1]/2)
+    mid_y = int(frame.shape[0]/2)
     
     diff = tuple((int(center[0] - mid_x), int(center[1] - mid_y)))
 

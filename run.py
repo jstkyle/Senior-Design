@@ -215,16 +215,16 @@ class myThread(threading.Thread):
                 y_diff = self.dir[1]
                 if x_diff < 0:
                     #print("slide left")
-                    nav.append('left')
+                    nav.append('forward')
                 elif x_diff > 0:
                     #print("slide right")
-                    nav.append('right')
+                    nav.append('back')
                 if y_diff < 0:
                     #print("slide up")
-                    nav.append('up')
+                    nav.append('left')
                 elif y_diff > 0:
                     #print("slide down")
-                    nav.append('down')
+                    nav.append('right')
 
                 print(x_diff, y_diff)
 
