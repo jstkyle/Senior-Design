@@ -108,9 +108,11 @@ class myThread(threading.Thread):
                 time.sleep(3)
                 self.park()
                 self.state = self.state + 1
+                '''
             elif self.state == 6:
                 self.park_adjust()
                 self.state = self.state + 1
+            '''
                 
     def search(self):
         print("start spinning")
