@@ -126,7 +126,7 @@ class myThread(threading.Thread):
 
         print("Found Target!!!!!!!")
         ser.write('t'.encode())
-        time.sleep(0.3)
+        time.sleep(1)
         ser.write('p'.encode())
         time.sleep(1)
         print("end state 1")
@@ -139,12 +139,12 @@ class myThread(threading.Thread):
                 print(target)
                 if target > 3:
                     ser.write('t'.encode())
-                    time.sleep(0.05)
+                    time.sleep(0.1)
                     ser.write('p'.encode())
                     time.sleep(0.1)
                 elif target < -3:
                     ser.write('g'.encode())
-                    time.sleep(0.05)
+                    time.sleep(0.1)
                     ser.write('p'.encode())
                     time.sleep(0.1)
                 else:
