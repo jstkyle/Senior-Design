@@ -194,6 +194,7 @@ class myThread(threading.Thread):
 
     def park(self):
         print("Forward")
+        time.sleep(5)
         ser.write('d'.encode())
         while True:
             try:
