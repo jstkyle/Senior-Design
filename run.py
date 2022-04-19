@@ -193,7 +193,7 @@ class myThread(threading.Thread):
 
     def park(self):
         print("Forward")
-        ser.write('l'.encode())
+        ser.write('o'.encode())
         while True:
             try:
                 center = self.center
