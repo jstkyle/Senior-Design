@@ -77,7 +77,7 @@ class myThread(threading.Thread):
         cv2.destroyAllWindows()
 
     def parking_algo(self):
-        self.state = 6
+        self.state = 1
         prev_state = 0
         while True:
 
@@ -214,19 +214,23 @@ class myThread(threading.Thread):
                 x_diff = self.dir[0]
                 y_diff = self.dir[1]
                 if x_diff < 0:
-                    #print("slide left")
-                    nav.append('forward')
+                    print("Go forward")
+                    ser.write('o'.encode())
+                    time.sleep(0.2)
                 elif x_diff > 0:
-                    #print("slide right")
-                    nav.append('back')
+                    print("Go backward")
+                    ser.write('c'.encode())
+                    time.sleep(0.2)
                 if y_diff < 0:
-                    #print("slide up")
-                    nav.append('left')
+                    print("Go left")
+                    ser.write('a'.encode())
+                    time.sleep(0.2)
                 elif y_diff > 0:
-                    #print("slide down")
-                    nav.append('right')
+                    print("Go right")
+                    ser.write('b'.encode())
+                    time.sleep(0.2)
                 
-                print(nav)
+                print(x_diff, y_diff)
 
             except:
                 pass
