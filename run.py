@@ -125,6 +125,8 @@ class myThread(threading.Thread):
                 pass
 
         print("Found Target!!!!!!!")
+        ser.write('t'.encode())
+        time.sleep(0.3)
         ser.write('p'.encode())
         time.sleep(1)
         print("end state 1")
