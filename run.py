@@ -193,7 +193,7 @@ class myThread(threading.Thread):
 
     def park(self):
         print("Forward")
-        ser.write('o'.encode())
+        ser.write('d'.encode())
         while True:
             try:
                 center = self.center
@@ -215,11 +215,11 @@ class myThread(threading.Thread):
                 y_diff = self.dir[1]
                 if x_diff < 0:
                     print("Go forward")
-                    ser.write('o'.encode())
+                    ser.write('d'.encode())
                     time.sleep(0.2)
                 elif x_diff > 0:
                     print("Go backward")
-                    ser.write('c'.encode())
+                    ser.write('e'.encode())
                     time.sleep(0.2)
                 if y_diff < 0:
                     print("Go left")
