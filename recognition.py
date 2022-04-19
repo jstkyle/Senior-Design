@@ -28,7 +28,8 @@ def detect_circle(blur):
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     # Iterate through contours and filter by the number of vertices 
     for c in cnts:
-        if cv2.contourArea(c) > 70000:
+        print(cv2.contourArea(c))
+        if cv2.contourArea(c) > 1000:
             perimeter = cv2.arcLength(c, True)
             approx = cv2.approxPolyDP(c, 0.04 * perimeter, True)
             if len(approx) > 5:
