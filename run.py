@@ -155,7 +155,7 @@ class myThread(threading.Thread):
     
     def forward(self):
         print("Going Forward")
-        ser.write('d'.encode())
+        ser.write('w'.encode())
         while True:
             try:
                 dist = self.dist
@@ -180,14 +180,14 @@ class myThread(threading.Thread):
                     break
                 elif side == "left":
                     print("slide right")
-                    ser.write('b'.encode()) # move right
+                    ser.write('a'.encode()) # move right
                     time.sleep(0.2)
                     ser.write('p'.encode())
                     prev_state = 4
                     break
                 elif side == "right":
                     print("slide left")
-                    ser.write('a'.encode()) # move left
+                    ser.write('d'.encode()) # move left
                     time.sleep(0.2)
                     ser.write('p'.encode())
                     prev_state = 4
@@ -197,7 +197,7 @@ class myThread(threading.Thread):
 
     def park(self):
         print("Forward")
-        ser.write('d'.encode())
+        ser.write('w'.encode())
         while True:
             try:
                 center = self.center
@@ -220,11 +220,11 @@ class myThread(threading.Thread):
                 y_diff = self.dir[1]
                 if x_diff < 0:
                     print("Go forward")
-                    ser.write('d'.encode())
+                    ser.write('w'.encode())
                     time.sleep(0.2)
                 elif x_diff > 0:
                     print("Go backward")
-                    ser.write('e'.encode())
+                    ser.write('s'.encode())
                     time.sleep(0.2)
                 if y_diff < 0:
                     print("Go left")
@@ -232,7 +232,7 @@ class myThread(threading.Thread):
                     time.sleep(0.2)
                 elif y_diff > 0:
                     print("Go right")
-                    ser.write('b'.encode())
+                    ser.write('d'.encode())
                     time.sleep(0.2)
                 
                 time.sleep(0.5)
