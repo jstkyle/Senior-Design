@@ -110,7 +110,7 @@ class myThread(threading.Thread):
                 self.park_adjust()
                 self.state = self.state + 1
                 
-    def search():
+    def search(self):
         print("start spinning")
         ser.write('r'.encode())
         
@@ -127,7 +127,7 @@ class myThread(threading.Thread):
         time.sleep(1)
         print("end state 1")
     
-    def align():
+    def align(self):
         print("Align with midpoint")
         while True:
             try:
@@ -149,7 +149,7 @@ class myThread(threading.Thread):
         ser.write('p'.encode())
         time.sleep(1)
     
-    def forward():
+    def forward(self):
         print("Going Forward")
         ser.write('o'.encode())
         while True:
@@ -165,7 +165,7 @@ class myThread(threading.Thread):
         ser.write('p'.encode())
         time.sleep(1)
 
-    def corr_entry():
+    def corr_entry(self):
         print("Aligning...")
         while True:
             try:
@@ -191,7 +191,7 @@ class myThread(threading.Thread):
             except:
                 pass
 
-    def park():
+    def park(self):
         print("Forward")
         ser.write('l'.encode())
         while True:
