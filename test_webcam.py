@@ -40,9 +40,9 @@ while True:
     dist = rec.dist(frame, pole_cnts)
     side = rec.detect_side(pole_cnts)
     entry = rec.is_entry(pole_cnts)
-    print(entry, side)
     midpoint = rec.steer(midpoints)
-    rec.dash(frame, midpoint)
+    target = rec.dash(frame, midpoint)
+    print(entry, side, target)
 
     # End time
     end = time.time()
