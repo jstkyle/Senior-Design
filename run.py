@@ -44,7 +44,7 @@ class myThread(threading.Thread):
 
             blur = cv2.GaussianBlur(frame, (5,5), 0)
             self.midpoints, self.pole_cnts = rec.detect_poles(blur, frame)
-            print(len(self.pole_cnts))
+            #print(len(self.pole_cnts))
             self.dist = rec.dist(frame, self.pole_cnts)
             self.side = rec.detect_side(self.pole_cnts)
             self.entry = rec.is_entry(self.pole_cnts)
@@ -225,6 +225,8 @@ class myThread(threading.Thread):
                 elif y_diff > 0:
                     #print("slide down")
                     nav.append('down')
+
+                print(nav)
 
             except:
                 pass
