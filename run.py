@@ -225,7 +225,7 @@ class myThread(threading.Thread):
                 elif y_diff > 0:
                     #print("slide down")
                     nav.append('right')
-
+                
                 print(nav)
 
             except:
