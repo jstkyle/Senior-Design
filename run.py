@@ -192,6 +192,7 @@ class myThread(threading.Thread):
                 
                 #print(side)
                 if entry is True:
+                    self.align()
                     break
                     '''
                     print("Entry 0")
@@ -280,11 +281,11 @@ class myThread(threading.Thread):
 
     def lift(self):
         print("Lift up")
-        ser.write('2'.encode())
+        ser.write('1'.encode())
         time.sleep(1.5)
         ser.write('0'.encode())
         time.sleep(0.5)
-        ser.write('1'.encode())
+        ser.write('2'.encode())
         time.sleep(1.5)
         ser.write('0'.encode())
         print('Delivery complete')
