@@ -128,7 +128,13 @@ class myThread(threading.Thread):
 
         print("Found Target!!!!!!!")
         ser.write('t'.encode())
-        time.sleep(1)
+        while True:
+            try:
+                poles = self.pole_cnts
+                if len(poles) > 1:
+                    break
+            except:
+                pass
         ser.write('p'.encode())
         time.sleep(1)
         print("end state 1")
