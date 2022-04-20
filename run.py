@@ -109,11 +109,13 @@ class myThread(threading.Thread):
                 time.sleep(3)
                 self.park()
                 self.state = self.state + 1
-                '''
             elif self.state == 6:
                 self.park_adjust()
                 self.state = self.state + 1
-            '''
+            elif self.state == 7:
+                self.lift()
+                self.state = self.state + 1
+            
                 
     def search(self):
         print("start spinning")
@@ -235,25 +237,25 @@ class myThread(threading.Thread):
         time.sleep(1)
     
     def park_adjust(self):
-        print("Going Forward")
+        print("Park adjust")
         while True:
             try:
                 nav = []
                 x_diff = self.dir[0]
                 y_diff = self.dir[1]
-                if x_diff < 0:
+                if x_diff < -65:
                     print("Go forward")
                     ser.write('w'.encode())
                     time.sleep(0.2)
-                elif x_diff > 0:
+                elif x_diff > 65:
                     print("Go backward")
                     ser.write('s'.encode())
                     time.sleep(0.2)
-                if y_diff < 0:
+                if y_diff < -65:
                     print("Go left")
                     ser.write('a'.encode())
                     time.sleep(0.2)
-                elif y_diff > 0:
+                elif y_diff > 65:
                     print("Go right")
                     ser.write('d'.encode())
                     time.sleep(0.2)
@@ -266,6 +268,21 @@ class myThread(threading.Thread):
 
         print("Arrive at target.")
         ser.write('p'.encode())
+
+    def lift():
+        print("Lift up")
+        ser.write('2'.encode())
+        time.sleep(0.5)
+        ser.write('0'.encode())
+        time.sleep(0.5)
+        ser.write('1'.encode())
+        time.sleep(0.9)
+        ser.write('0'.encode())
+        print('Delivery complete')
+        time.sleep(1.5)
+        print('Leaving')
+        ser.write('w'.encode())
+        time.sleep(1.5)
 
 
 thread = myThread()
