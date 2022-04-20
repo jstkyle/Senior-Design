@@ -292,6 +292,7 @@ class myThread(threading.Thread):
         print('Leaving')
         ser.write('w'.encode())
         time.sleep(1.5)
+        ser.write('p'.encode())
 
 
 thread = myThread()
