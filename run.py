@@ -179,6 +179,7 @@ class myThread(threading.Thread):
             try:
                 side = self.side
                 entry = self.entry
+                
                 #print(side)
                 if entry is True:
                     entry_confirm = True
@@ -190,14 +191,14 @@ class myThread(threading.Thread):
                         break
                 elif side == "left":
                     print("slide right")
-                    ser.write('a'.encode()) # move right
+                    ser.write('d'.encode()) # move right
                     time.sleep(0.2)
                     ser.write('p'.encode())
                     prev_state = 4
                     break
                 elif side == "right":
                     print("slide left")
-                    ser.write('d'.encode()) # move left
+                    ser.write('a'.encode()) # move left
                     time.sleep(0.2)
                     ser.write('p'.encode())
                     prev_state = 4
