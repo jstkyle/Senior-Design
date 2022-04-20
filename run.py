@@ -278,7 +278,7 @@ class myThread(threading.Thread):
         print("Arrive at target.")
         ser.write('p'.encode())
 
-    def lift():
+    def lift(self):
         print("Lift up")
         ser.write('2'.encode())
         time.sleep(0.5)
