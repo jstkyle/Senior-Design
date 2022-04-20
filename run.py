@@ -113,7 +113,19 @@ class myThread(threading.Thread):
                 self.park_adjust()
                 self.state = self.state + 1
             elif self.state == 7:
-                self.lift()
+                #self.lift()
+                print("Lift up")
+                ser.write('1'.encode())
+                time.sleep(0.9)
+                ser.write('2'.encode())
+                time.sleep(0.9)
+                ser.write('0'.encode())
+                print('Delivery complete')
+                time.sleep(1.5)
+                print('Leaving')
+                ser.write('w'.encode())
+                time.sleep(1.5)
+                ser.write('p'.encode())
                 self.state = self.state + 1
             
                 
@@ -282,11 +294,11 @@ class myThread(threading.Thread):
     def lift(self):
         print("Lift up")
         ser.write('1'.encode())
-        time.sleep(1.5)
+        time.sleep(0.9)
         ser.write('0'.encode())
         time.sleep(0.5)
         ser.write('2'.encode())
-        time.sleep(1.5)
+        time.sleep(0.9)
         ser.write('0'.encode())
         print('Delivery complete')
         time.sleep(1.5)
