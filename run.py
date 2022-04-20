@@ -19,6 +19,7 @@ class myThread(threading.Thread):
 
     def __init__(self):
 
+        self.cam1 = True
         self.t1 = threading.Thread(target = self.front_cam)
         self.t1.start()
         self.t2 = threading.Thread(target = self.head_cam)
@@ -36,7 +37,7 @@ class myThread(threading.Thread):
         if not cap.isOpened():
             raise IOError("Cannot open webcam")
         
-        while True:
+        while self.cam1 is True:
             ret, frame = cap.read()
 
             if frame is None:
@@ -216,7 +217,7 @@ class myThread(threading.Thread):
         return prev_state
 
     def park(self):
-        self.t1.join()
+        self.cam1 = False
         self.t2.start()
         print("Forward")
         ser.write('w'.encode())
