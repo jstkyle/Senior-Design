@@ -248,20 +248,20 @@ class myThread(threading.Thread):
                 x_diff = self.dir[0]
                 y_diff = self.dir[1]
                 if x_diff < -65:
-                    print("Go forward")
-                    ser.write('w'.encode())
-                    time.sleep(0.2)
-                elif x_diff > 65:
                     print("Go backward")
                     ser.write('s'.encode())
                     time.sleep(0.2)
-                if y_diff < -65:
-                    print("Go left")
-                    ser.write('a'.encode())
+                elif x_diff > 65:
+                    print("Go forward")
+                    ser.write('w'.encode())
                     time.sleep(0.2)
-                elif y_diff > 65:
+                if y_diff < -65:
                     print("Go right")
                     ser.write('d'.encode())
+                    time.sleep(0.2)
+                elif y_diff > 65:
+                    print("Go left")
+                    ser.write('a'.encode())
                     time.sleep(0.2)
                 
                 time.sleep(0.5)
