@@ -181,7 +181,13 @@ class myThread(threading.Thread):
                 entry = self.entry
                 #print(side)
                 if entry is True:
-                    break
+                    entry_confirm = True
+                    for i in range(5):
+                        if self.entry is False:
+                            entry_confirm = False
+                        
+                    if entry_confirm is True:
+                        break
                 elif side == "left":
                     print("slide right")
                     ser.write('a'.encode()) # move right
