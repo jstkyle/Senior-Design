@@ -106,12 +106,14 @@ class myThread(threading.Thread):
                     time.sleep(3)
                     self.state = self.state + 1
             elif self.state == 5:
+                '''
                 time.sleep(1.5)
                 ser.write('q'.encode())
                 time.sleep(0.9)
                 ser.write('k'.encode())
                 time.sleep(0.9)
                 ser.write('j'.encode())
+                '''
                 self.park()
                 self.state = self.state + 1
             elif self.state == 6:
