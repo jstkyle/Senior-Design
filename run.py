@@ -247,22 +247,22 @@ class myThread(threading.Thread):
                 nav = []
                 x_diff = self.dir[0]
                 y_diff = self.dir[1]
-                if x_diff < -65:
+                if x_diff < -80:
                     print("Go backward")
                     ser.write('s'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
-                elif x_diff > 65:
+                elif x_diff > 80:
                     print("Go forward")
                     ser.write('w'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
-                if y_diff < -65:
+                if y_diff < -80:
                     print("Go right")
                     ser.write('d'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
-                elif y_diff > 65:
+                elif y_diff > 80:
                     print("Go left")
                     ser.write('a'.encode())
                     time.sleep(0.1)
@@ -281,11 +281,11 @@ class myThread(threading.Thread):
     def lift(self):
         print("Lift up")
         ser.write('2'.encode())
-        time.sleep(0.5)
+        time.sleep(1.5)
         ser.write('0'.encode())
         time.sleep(0.5)
         ser.write('1'.encode())
-        time.sleep(0.9)
+        time.sleep(1.5)
         ser.write('0'.encode())
         print('Delivery complete')
         time.sleep(1.5)
