@@ -19,8 +19,8 @@ class myThread(threading.Thread):
 
     def __init__(self):
 
-        t1 = threading.Thread(target = self.front_cam)
-        t1.start()
+        self.t1 = threading.Thread(target = self.front_cam)
+        self.t1.start()
         self.t2 = threading.Thread(target = self.head_cam)
         
         t3 = threading.Thread(target = self.parking_algo)
@@ -216,6 +216,7 @@ class myThread(threading.Thread):
         return prev_state
 
     def park(self):
+        self.t1.join()
         self.t2.start()
         print("Forward")
         ser.write('w'.encode())
