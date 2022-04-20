@@ -79,7 +79,7 @@ class myThread(threading.Thread):
 
     def parking_algo(self):
         self.state = 1
-        self.prev_state = 0
+        prev_state = 0
         while True:
 
             if self.state == 1:
@@ -96,8 +96,8 @@ class myThread(threading.Thread):
                 self.forward()
                 self.state = self.state + 1
             elif self.state == 4:
-                self.corr_entry()
-                if self.prev_state == 4:
+                prev_state = self.corr_entry()
+                if prev_state == 4:
                     self.state = 2
                 else:
                     print("End state 4!!!!!!!")
@@ -181,6 +181,7 @@ class myThread(threading.Thread):
 
     def corr_entry(self):
         print("Aligning...")
+        prev_state = 0
         while True:
             try:
                 side = self.side
@@ -200,17 +201,19 @@ class myThread(threading.Thread):
                     ser.write('d'.encode()) # move right
                     time.sleep(0.2)
                     ser.write('p'.encode())
-                    self.prev_state = 4
+                    prev_state = 4
                     break
                 elif side == "right":
                     print("slide left")
                     ser.write('a'.encode()) # move left
                     time.sleep(0.2)
                     ser.write('p'.encode())
-                    self.prev_state = 4
+                    prev_state = 4
                     break
             except:
                 pass
+
+        return prev_state
 
     def park(self):
         print("Forward")
