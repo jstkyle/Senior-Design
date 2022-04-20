@@ -267,10 +267,11 @@ class myThread(threading.Thread):
                     ser.write('a'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
+                else:
+                    break
                 
                 time.sleep(0.5)
                 print(x_diff, y_diff)
-
             except:
                 pass
 
