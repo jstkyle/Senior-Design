@@ -58,7 +58,7 @@ def detect_poles(blur, frame):
         return midpoints, pole_cnts
 
     for cnt in cnts:
-        if cv2.contourArea(cnt) > 2000:
+        if cv2.contourArea(cnt) > 500:
             # Find bounding rectangle
             rect = cv2.minAreaRect(cnt) #(center(x, y), (width, height), angle of rotation)
             box = cv2.boxPoints(rect)
