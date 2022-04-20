@@ -271,11 +271,11 @@ class myThread(threading.Thread):
 
     def lift():
         print("Lift up")
-        ser.write('2'.encode())
+        ser.write('1'.encode())
         time.sleep(0.5)
         ser.write('0'.encode())
         time.sleep(0.5)
-        ser.write('1'.encode())
+        ser.write('2'.encode())
         time.sleep(0.9)
         ser.write('0'.encode())
         print('Delivery complete')
