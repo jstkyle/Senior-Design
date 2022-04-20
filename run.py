@@ -117,6 +117,7 @@ class myThread(threading.Thread):
             elif self.state == 6:
                 self.park_adjust()
                 self.state = self.state + 1
+            '''
             elif self.state == 7:
                 #self.lift()
                 print("Lift up")
@@ -132,6 +133,7 @@ class myThread(threading.Thread):
                 time.sleep(1.5)
                 ser.write('p'.encode())
                 self.state = self.state + 1
+            '''
             
                 
     def search(self):
