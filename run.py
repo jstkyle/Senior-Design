@@ -192,8 +192,9 @@ class myThread(threading.Thread):
                 
                 #print(side)
                 if entry is True:
+                    print("Entry 0")
                     entry_confirm = True
-                    for i in range(2):
+                    for i in range(1):
                         if self.entry is False:
                             entry_confirm = False
                         
