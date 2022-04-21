@@ -121,7 +121,8 @@ class myThread(threading.Thread):
                 self.state = self.state + 1
             
             elif self.state == 7:
-                #self.lift()
+                self.lift()
+                '''
                 print("Lift up")
                 ser.write('q'.encode())
                 time.sleep(0.9)
@@ -135,6 +136,7 @@ class myThread(threading.Thread):
                 time.sleep(1.5)
                 ser.write('p'.encode())
                 self.state = self.state + 1
+                '''
             
             
                 
