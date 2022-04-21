@@ -119,11 +119,27 @@ class myThread(threading.Thread):
             elif self.state == 6:
                 self.park_adjust()
                 self.state = self.state + 1
-            
+            '''
             elif self.state == 7:
-                self.lift()
+                #self.lift()
+                try:
+                    print("Lift up")
+                    time.sleep(1.5)
+                    ser.write('q'.encode())
+                    time.sleep(1.5)
+                    ser.write('k'.encode())
+                    time.sleep(1.5)
+                    ser.write('j'.encode())
+                    print('Delivery complete')
+                    time.sleep(1.5)
+                    print('Leaving')
+                    ser.write('w'.encode())
+                    time.sleep(1.5)
+                    ser.write('p'.encode())
+                except:
+                    pass
                 self.state = self.state + 1
-            
+            '''
             
                 
     def search(self):
@@ -278,6 +294,24 @@ class myThread(threading.Thread):
                     time.sleep(0.1)
                     ser.write('p'.encode())
                 else:
+                    print("Arrive at target.")
+                    ser.write('p'.encode())
+                    try:
+                        print("Lift up")
+                        time.sleep(1.5)
+                        ser.write('q'.encode())
+                        time.sleep(1.5)
+                        ser.write('k'.encode())
+                        time.sleep(1.5)
+                        ser.write('j'.encode())
+                        print('Delivery complete')
+                        time.sleep(1.5)
+                        print('Leaving')
+                        ser.write('w'.encode())
+                        time.sleep(1.5)
+                        ser.write('p'.encode())
+                    except:
+                        pass
                     break
                 
                 time.sleep(0.5)
@@ -285,25 +319,10 @@ class myThread(threading.Thread):
             except:
                 pass
 
-        print("Arrive at target.")
-        ser.write('p'.encode())
 
     def lift(self):
-        try:
-            print("Lift up")
-            ser.write('q'.encode())
-            time.sleep(1.5)
-            ser.write('k'.encode())
-            time.sleep(1.5)
-            ser.write('j'.encode())
-            print('Delivery complete')
-            time.sleep(1.5)
-            print('Leaving')
-            ser.write('w'.encode())
-            time.sleep(1.5)
-            ser.write('p'.encode())
-        except:
-            pass
+        '''continue'''
+        
 
 
 thread = myThread()
