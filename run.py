@@ -173,12 +173,12 @@ class myThread(threading.Thread):
             try:
                 target = self.target
                 print(target)
-                if target > -35:
+                if target > -20:
                     ser.write('t'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
                     time.sleep(0.1)
-                elif target < -40:
+                elif target < -25:
                     ser.write('g'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
