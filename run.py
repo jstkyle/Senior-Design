@@ -135,8 +135,8 @@ class myThread(threading.Thread):
                 ser.write('w'.encode())
                 time.sleep(1.5)
                 ser.write('p'.encode())
-                self.state = self.state + 1
                 '''
+                self.state = self.state + 1
             
             
                 
@@ -303,10 +303,13 @@ class myThread(threading.Thread):
         ser.write('p'.encode())
 
     def lift(self):
-        print("Lift up")
-        ser.write('g'.encode())
-        time.sleep(1.5)
-        ser.write('p'.encode())
+        try:
+            print("Lift up")
+            ser.write('g'.encode())
+            time.sleep(1.5)
+            ser.write('p'.encode())
+        except:
+            pass
         '''
         time.sleep(1.5)
         ser.write('q'.encode())
