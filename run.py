@@ -308,7 +308,7 @@ class myThread(threading.Thread):
                         time.sleep(1.5)
                         print('Leaving')
                         ser.write('w'.encode())
-                        time.sleep(1.5)
+                        time.sleep(4)
                         ser.write('p'.encode())
                     except:
                         pass
