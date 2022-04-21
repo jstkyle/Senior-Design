@@ -119,7 +119,7 @@ class myThread(threading.Thread):
             elif self.state == 6:
                 self.park_adjust()
                 self.state = self.state + 1
-            '''
+            
             elif self.state == 7:
                 #self.lift()
                 print("Lift up")
@@ -135,7 +135,7 @@ class myThread(threading.Thread):
                 time.sleep(1.5)
                 ser.write('p'.encode())
                 self.state = self.state + 1
-            '''
+            
             
                 
     def search(self):
@@ -302,19 +302,23 @@ class myThread(threading.Thread):
 
     def lift(self):
         print("Lift up")
-        ser.write('1'.encode())
+        ser.write('g'.encode())
+        time.sleep(1.5)
+        ser.write('p'.encode())
+        '''
+        time.sleep(1.5)
+        ser.write('q'.encode())
         time.sleep(0.9)
-        ser.write('0'.encode())
-        time.sleep(0.5)
-        ser.write('2'.encode())
+        ser.write('k'.encode())
         time.sleep(0.9)
-        ser.write('0'.encode())
+        ser.write('j'.encode())
         print('Delivery complete')
         time.sleep(1.5)
         print('Leaving')
         ser.write('w'.encode())
         time.sleep(1.5)
         ser.write('p'.encode())
+        '''
 
 
 thread = myThread()
