@@ -173,12 +173,12 @@ class myThread(threading.Thread):
             try:
                 target = self.target
                 print(target)
-                if target > -20:
+                if target > 3:
                     ser.write('t'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
                     time.sleep(0.1)
-                elif target < -25:
+                elif target < -3:
                     ser.write('g'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
@@ -251,6 +251,8 @@ class myThread(threading.Thread):
     def park(self):
         self.cam1 = False
         self.t2.start()
+        ser.write('d'.encode())
+        time.sleep(0.8)
         print("Forward")
         ser.write('w'.encode())
         while True:
