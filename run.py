@@ -252,7 +252,7 @@ class myThread(threading.Thread):
         self.cam1 = False
         self.t2.start()
         ser.write('d'.encode())
-        time.sleep(1)
+        time.sleep(0.7)
         ser.write('p'.encode())
         print("Forward")
         ser.write('w'.encode())
