@@ -251,9 +251,6 @@ class myThread(threading.Thread):
     def park(self):
         self.cam1 = False
         self.t2.start()
-        ser.write('d'.encode())
-        time.sleep(0.7)
-        ser.write('p'.encode())
         print("Forward")
         ser.write('w'.encode())
         while True:
@@ -301,11 +298,10 @@ class myThread(threading.Thread):
                     ser.write('p'.encode())
                     try:
                         print("Lift up")
-                        time.sleep(1.5)
                         ser.write('q'.encode())
-                        time.sleep(1.5)
+                        time.sleep(1.1)
                         ser.write('k'.encode())
-                        time.sleep(1.5)
+                        time.sleep(1.1)
                         ser.write('j'.encode())
                         print('Delivery complete')
                         time.sleep(1.5)
