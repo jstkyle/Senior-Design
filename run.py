@@ -122,20 +122,6 @@ class myThread(threading.Thread):
             
             elif self.state == 7:
                 self.lift()
-                '''
-                print("Lift up")
-                ser.write('q'.encode())
-                time.sleep(0.9)
-                ser.write('k'.encode())
-                time.sleep(0.9)
-                ser.write('j'.encode())
-                print('Delivery complete')
-                time.sleep(1.5)
-                print('Leaving')
-                ser.write('w'.encode())
-                time.sleep(1.5)
-                ser.write('p'.encode())
-                '''
                 self.state = self.state + 1
             
             
@@ -305,25 +291,19 @@ class myThread(threading.Thread):
     def lift(self):
         try:
             print("Lift up")
-            ser.write('g'.encode())
+            ser.write('q'.encode())
+            time.sleep(1.5)
+            ser.write('k'.encode())
+            time.sleep(1.5)
+            ser.write('j'.encode())
+            print('Delivery complete')
+            time.sleep(1.5)
+            print('Leaving')
+            ser.write('w'.encode())
             time.sleep(1.5)
             ser.write('p'.encode())
         except:
             pass
-        '''
-        time.sleep(1.5)
-        ser.write('q'.encode())
-        time.sleep(0.9)
-        ser.write('k'.encode())
-        time.sleep(0.9)
-        ser.write('j'.encode())
-        print('Delivery complete')
-        time.sleep(1.5)
-        print('Leaving')
-        ser.write('w'.encode())
-        time.sleep(1.5)
-        ser.write('p'.encode())
-        '''
 
 
 thread = myThread()
