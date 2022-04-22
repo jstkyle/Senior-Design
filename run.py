@@ -295,22 +295,18 @@ class myThread(threading.Thread):
                     ser.write('p'.encode())
                 else:
                     print("Arrive at target.")
+                    print("Lift up")
+                    ser.write('q'.encode())
+                    time.sleep(1.1)
+                    ser.write('k'.encode())
+                    time.sleep(1.1)
+                    ser.write('j'.encode())
+                    print('Delivery complete')
+                    time.sleep(1.5)
+                    print('Leaving')
+                    ser.write('w'.encode())
+                    time.sleep(4)
                     ser.write('p'.encode())
-                    try:
-                        print("Lift up")
-                        ser.write('q'.encode())
-                        time.sleep(1.1)
-                        ser.write('k'.encode())
-                        time.sleep(1.1)
-                        ser.write('j'.encode())
-                        print('Delivery complete')
-                        time.sleep(1.5)
-                        print('Leaving')
-                        ser.write('w'.encode())
-                        time.sleep(4)
-                        ser.write('p'.encode())
-                    except:
-                        pass
                     break
                 
                 time.sleep(0.5)
