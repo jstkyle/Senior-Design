@@ -23,7 +23,7 @@ def detect_blue(frame):
 def detect_green(frame):
     # filter for green
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_green = np.array([30, 50, 50])
+    lower_green = np.array([30, 80, 50])
     upper_green = np.array([70, 255, 255])
     mask = cv2.inRange(hsv, lower_green, upper_green)
 
@@ -34,7 +34,7 @@ def detect_circle(blur):
     # Find contours
     cnts = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     # Extract contours depending on OpenCV version
-    #cnts = cnts[0] if len(cnts) == 2 else cnts[1]
+    cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     # Iterate through contours and filter by the number of vertices 
     for c in cnts:
         if cv2.contourArea(c) > 5000:
@@ -52,9 +52,9 @@ def detect_circle(blur):
 def detect_circle_green(blur):
     mask = detect_green(blur)
     # Find contours
-    cnts = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cnts, hier = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     # Extract contours depending on OpenCV version
-    cnts = cnts[0] if len(cnts) == 2 else cnts[1]
+    #cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     # Iterate through contours and filter by the number of vertices 
     for c in cnts:
         
