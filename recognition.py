@@ -58,7 +58,7 @@ def detect_circle_green(blur):
     # Iterate through contours and filter by the number of vertices 
     for c in cnts:
         
-        if cv2.contourArea(c) > 1000:
+        if cv2.contourArea(c) > 500:
             print(cv2.contourArea(c))
             perimeter = cv2.arcLength(c, True)
             approx = cv2.approxPolyDP(c, 0.04 * perimeter, True)
