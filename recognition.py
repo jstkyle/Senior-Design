@@ -20,6 +20,15 @@ def detect_blue(frame):
 
     return mask
 
+def detect_red(frame):
+    # filter for red
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    lower_red = np.array([80, 70, 50])
+    upper_red = np.array([100, 255, 255])
+    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+
+    return mask
+
 def detect_circle(blur):
     mask = detect_blue(blur)
     # Find contours
@@ -29,6 +38,26 @@ def detect_circle(blur):
     # Iterate through contours and filter by the number of vertices 
     for c in cnts:
         if cv2.contourArea(c) > 5000:
+            #print(cv2.contourArea(c))
+            perimeter = cv2.arcLength(c, True)
+            approx = cv2.approxPolyDP(c, 0.04 * perimeter, True)
+            if len(approx) > 5:
+                center, radius = cv2.minEnclosingCircle(c)
+                #cv2.circle(frame, np.int0(center), int(radius), (0,255,0), thickness=2)
+                #cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
+                return center
+
+    return (0,0)
+
+def detect_circle_red(blur):
+    mask = detect_red(blur)
+    # Find contours
+    cnts = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    # Extract contours depending on OpenCV version
+    cnts = cnts[0] if len(cnts) == 2 else cnts[1]
+    # Iterate through contours and filter by the number of vertices 
+    for c in cnts:
+        if cv2.contourArea(c) > 2000:
             #print(cv2.contourArea(c))
             perimeter = cv2.arcLength(c, True)
             approx = cv2.approxPolyDP(c, 0.04 * perimeter, True)
