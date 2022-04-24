@@ -52,7 +52,7 @@ class myThread(threading.Thread):
             self.entry = rec.is_entry(self.pole_cnts)
             midpoint = rec.steer(self.midpoints)
             self.target = rec.dash(frame, midpoint)
-            self.red_center = rec.detect_circle_red(blur)
+            self.green_center = rec.detect_circle_green(blur)
             self.dir = rec.park_dir(frame, self.red_center)
             
         cap.release()
@@ -259,7 +259,7 @@ class myThread(threading.Thread):
         ser.write('w'.encode())
         while True:
             try:
-                center = self.red_center
+                center = self.green_center
                 x_diff = self.dir[0]
                 if 
                 if center != (0,0):

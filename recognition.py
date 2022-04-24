@@ -20,12 +20,12 @@ def detect_blue(frame):
 
     return mask
 
-def detect_red(frame):
-    # filter for red
+def detect_green(frame):
+    # filter for green
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_red = np.array([10, 100, 20])
-    upper_red = np.array([25, 255, 255])
-    mask = cv2.inRange(hsv, lower_red, upper_red)
+    lower_green = np.array([50, 50, 50])
+    upper_green = np.array([70, 255, 255])
+    mask = cv2.inRange(hsv, lower_green, upper_green)
 
     return mask
 
@@ -49,8 +49,8 @@ def detect_circle(blur):
 
     return (0,0)
 
-def detect_circle_red(blur):
-    mask = detect_red(blur)
+def detect_circle_green(blur):
+    mask = detect_green(blur)
     # Find contours
     cnts = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     # Extract contours depending on OpenCV version
