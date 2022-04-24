@@ -23,8 +23,8 @@ def detect_blue(frame):
 def detect_red(frame):
     # filter for red
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_red = np.array([0, 50, 50])
-    upper_red = np.array([20, 255, 255])
+    lower_red = np.array([10, 100, 20])
+    upper_red = np.array([25, 255, 255])
     mask = cv2.inRange(hsv, lower_red, upper_red)
 
     return mask
