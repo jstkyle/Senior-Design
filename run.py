@@ -285,7 +285,7 @@ class myThread(threading.Thread):
                     ser.write('w'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
-                if y_diff < -80:
+                elif y_diff < -80:
                     print("Go right")
                     ser.write('d'.encode())
                     time.sleep(0.1)
