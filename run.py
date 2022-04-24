@@ -175,9 +175,9 @@ class myThread(threading.Thread):
                 print(target)
                 if target > -10:
                     # right rotate
-                    ser.write('c'.encode())
+                    ser.write('t'.encode())
                     time.sleep(0.1)
-                    ser.write('p'.encode())
+                    ser.write('g'.encode())
                     time.sleep(0.1)
                 elif target < -15:
                     # left rotate
