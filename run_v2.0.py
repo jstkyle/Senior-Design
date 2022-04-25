@@ -196,10 +196,10 @@ class myThread(threading.Thread):
                     ser.write('p'.encode())
                     while True:
                         try:
-                            side = self.side
                             entry = self.entry
                             
                             if entry is True:
+                                print('HElloooooooooooooooo')
                                 ser.write('p'.encode())
                                 break
                             else:   
