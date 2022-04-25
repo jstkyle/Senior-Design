@@ -227,8 +227,11 @@ class myThread(threading.Thread):
                     if entry_confirm is True:
                         break
                     '''
-                else:
-                    ser.write('w'.encode())
+                else:   
+                    try:
+                        ser.write('l'.encode())
+                    except:
+                        pass
             except:
                 pass
 
