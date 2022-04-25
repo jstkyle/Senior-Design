@@ -42,6 +42,7 @@ while True:
     center = rec.detect_circle_green(blur)
     point = (0,0)
     dir = rec.park_dir(frame, center)
+    print(x_diff[0])
     '''
     print(center, dir)
     if center != point:

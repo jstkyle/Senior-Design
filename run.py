@@ -53,7 +53,7 @@ class myThread(threading.Thread):
             midpoint = rec.steer(self.midpoints)
             self.target = rec.dash(frame, midpoint)
             self.green_center = rec.detect_circle_green(blur)
-            self.dir = rec.park_dir(frame, self.red_center)
+            self.green_dir = rec.park_dir(frame, self.green_center)
             
         cap.release()
         cv2.destroyAllWindows()
@@ -259,9 +259,10 @@ class myThread(threading.Thread):
         ser.write('w'.encode())
         while True:
             try:
-                center = self.green_center
-                x_diff = self.dir[0]
-                if 
+                center = self.center
+                
+                x_diff = self.green_dir[0]
+                if x_diff
                 if center != (0,0):
                     print(center)
                     break
