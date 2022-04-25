@@ -210,6 +210,7 @@ class myThread(threading.Thread):
                     break
                 else:
                     ser.write('l'.encode())
+                    time.sleep(0.3)
             except:
                 pass
 
