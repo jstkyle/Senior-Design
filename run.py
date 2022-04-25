@@ -253,7 +253,7 @@ class myThread(threading.Thread):
         return prev_state
 
     def park(self):
-        self.cam1 = False
+        #self.cam1 = False
         self.t2.start()
         print("Forward")
         ser.write('w'.encode())
