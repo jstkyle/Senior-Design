@@ -256,7 +256,7 @@ class myThread(threading.Thread):
                     time.sleep(0.1)
                     ser.write('p'.encode())
                     time.sleep(0.1)
-                elif sdiff < -5:
+                elif x_diff < -5:
                     # left rotate
                     ser.write('g'.encode())
                     time.sleep(0.1)
@@ -281,6 +281,7 @@ class myThread(threading.Thread):
                     print(self.radius)
                     break
                 elif x_diff < -10 and x_diff > 10 and green_center != (0,0):
+                    ser.write('p'.encode())
                     self.align_2()
                     ser.write('w'.encode())
             except:
