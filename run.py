@@ -254,7 +254,7 @@ class myThread(threading.Thread):
                 x_diff = self.green_dir[0]
                 if self.radius > 21:
                     break
-                elif x_diff > 10 and green_center != (0,0):
+                elif x_diff < -10 and green_center != (0,0):
                     # Too far right
                     print("Slide left")
                     ser.write('p'.encode())
@@ -263,7 +263,7 @@ class myThread(threading.Thread):
                     ser.write('p'.encode())
                     time.sleep(0.3)
                     ser.write('w'.encode())
-                elif x_diff < -10 and green_center != (0,0):
+                elif x_diff > 10 and green_center != (0,0):
                     # Too far left
                     print("Slide right")
                     ser.write('p'.encode())
