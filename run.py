@@ -260,9 +260,22 @@ class myThread(threading.Thread):
         while True:
             try:
                 center = self.center
-                
+                green_center = self.green_center
                 x_diff = self.green_dir[0]
-                if x_diff
+                if x_diff > 10 and green_center != (0,0):
+                    # Too far right
+                    print("Slide left")
+                    ser.write('p'.encode())
+                    ser.write('a'.encode())
+                    time.sleep(0.1)
+                    ser.write('p'.encode())
+                elif x_diff < -10 and green_center != (0,0):
+                    # Too far left
+                    print("Slide right")
+                    ser.write('p'.encode())
+                    ser.write('d'.encode())
+                    time.sleep(0.1)
+                    ser.write('p'.encode())
                 if center != (0,0):
                     print(center)
                     break

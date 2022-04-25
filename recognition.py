@@ -43,8 +43,8 @@ def detect_circle(blur):
 def detect_green(frame):
     # filter for green
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_green = np.array([40, 80, 100])
-    upper_green = np.array([85, 255, 255])
+    lower_green = np.array([40, 80, 90])
+    upper_green = np.array([90, 255, 255])
     mask = cv2.inRange(hsv, lower_green, upper_green)
 
     return mask
