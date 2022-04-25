@@ -35,7 +35,7 @@ while True:
         break
 
     blur = cv2.GaussianBlur(frame, (5,5), 0)
-    mask = detect_yellow(blur)
+    mask = rec.detect_yellow(blur)
 
     midpoints, pole_cnts = rec.detect_poles(blur, frame)
     center = rec.detect_circle(blur)
