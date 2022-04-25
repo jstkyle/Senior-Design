@@ -286,7 +286,7 @@ class myThread(threading.Thread):
         
         print("Arrived")
         ser.write('p'.encode())
-        time.sleep(1)
+        time.sleep(2)
 
     def park(self):
         self.cam1 = False
