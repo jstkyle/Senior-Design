@@ -283,8 +283,10 @@ class myThread(threading.Thread):
                     ser.write('w'.encode())
             except:
                 pass
-
+        
         print("Arrived")
+        ser.write('p'.encode())
+        time.sleep(1)
 
     def park(self):
         self.cam1 = False
