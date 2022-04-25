@@ -270,13 +270,14 @@ class myThread(threading.Thread):
         ser.write('p'.encode())
 
     def forward_2(self):
-        print("Forward")
+        print("Forward_2")
         ser.write('w'.encode())
         while True:
             try:
                 green_center = self.green_center
                 x_diff = self.green_dir[0]
                 if self.radius > 21:
+                    print(self.radius)
                     break
                 elif x_diff < -10 and x_diff > 10 and green_center != (0,0):
                     self.align_2()
@@ -284,7 +285,7 @@ class myThread(threading.Thread):
             except:
                 pass
         
-        print("Arrived")
+        print("Arrived_2")
         ser.write('p'.encode())
         time.sleep(2)
 
