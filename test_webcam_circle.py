@@ -43,12 +43,10 @@ while True:
     point = (0,0)
     dir = rec.park_dir(frame, center)
     print(dir[0])
-    '''
     print(center, dir)
     if center != point:
         print(f"X diff: {dir[0]}")
         print(f"Y diff: {dir[1]}")
-    '''
     cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
     cv2.circle(frame, (mid_x, mid_y), 2, (255,0,0), thickness=10)
     # End time
