@@ -252,7 +252,7 @@ class myThread(threading.Thread):
             try:
                 green_center = self.green_center
                 x_diff = self.green_dir[0]
-                if self.radius > 3:
+                if self.radius > 21:
                     break
                 elif x_diff > 10 and green_center != (0,0):
                     # Too far right
