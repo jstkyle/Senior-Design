@@ -298,12 +298,12 @@ class myThread(threading.Thread):
                     ser.write('w'.encode())
                     time.sleep(0.2)
                     ser.write('p'.encode())
-                elif y_diff < -120:
+                elif y_diff < -40:
                     print("Go right")
                     ser.write('d'.encode())
                     time.sleep(0.2)
                     ser.write('p'.encode())
-                elif y_diff > 40:
+                elif y_diff > 120:
                     print("Go left")
                     ser.write('a'.encode())
                     time.sleep(0.2)
