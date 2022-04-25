@@ -279,7 +279,7 @@ class myThread(threading.Thread):
 
         print("Arrived.")
         ser.write('p'.encode())
-        time.sleep(1)
+        time.sleep(0.3)
     
     def park_adjust(self):
         print("Park adjust")
@@ -288,22 +288,22 @@ class myThread(threading.Thread):
                 nav = []
                 x_diff = self.dir[0]
                 y_diff = self.dir[1]
-                if x_diff < -80:
+                if x_diff < -100:
                     print("Go backward")
                     ser.write('s'.encode())
                     time.sleep(0.2)
                     ser.write('p'.encode())
-                elif x_diff > 80:
+                elif x_diff > 60:
                     print("Go forward")
                     ser.write('w'.encode())
                     time.sleep(0.2)
                     ser.write('p'.encode())
-                elif y_diff < -80:
+                elif y_diff < -120:
                     print("Go right")
                     ser.write('d'.encode())
                     time.sleep(0.2)
                     ser.write('p'.encode())
-                elif y_diff > 80:
+                elif y_diff > 40:
                     print("Go left")
                     ser.write('a'.encode())
                     time.sleep(0.2)
