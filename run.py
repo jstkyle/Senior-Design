@@ -229,14 +229,14 @@ class myThread(threading.Thread):
                 elif side == "left":
                     print("slide right")
                     ser.write('d'.encode()) # move right
-                    time.sleep(0.2)
+                    time.sleep(1)
                     ser.write('p'.encode())
                     prev_state = 4
                     break
                 elif side == "right":
                     print("slide left")
                     ser.write('a'.encode()) # move left
-                    time.sleep(0.2)
+                    time.sleep(1)
                     ser.write('p'.encode())
                     prev_state = 4
                     break
