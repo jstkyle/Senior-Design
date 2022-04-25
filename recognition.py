@@ -66,9 +66,9 @@ def detect_circle_green(blur):
                 center, radius = cv2.minEnclosingCircle(c)
                 #cv2.circle(frame, np.int0(center), int(radius), (0,255,0), thickness=2)
                 #cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
-                return center
+                return center, radius
 
-    return (0,0)
+    return (0,0), 0
 
 def park_dir(frame, center):
     mid_x = int(frame.shape[1]/2)

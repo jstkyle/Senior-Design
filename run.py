@@ -52,7 +52,7 @@ class myThread(threading.Thread):
             self.entry = rec.is_entry(self.pole_cnts)
             midpoint = rec.steer(self.midpoints)
             self.target = rec.dash(frame, midpoint)
-            self.green_center = rec.detect_circle_green(blur)
+            self.green_center, self.radius = rec.detect_circle_green(blur)
             self.green_dir = rec.park_dir(frame, self.green_center)
             
         cap.release()
@@ -108,14 +108,7 @@ class myThread(threading.Thread):
                     time.sleep(3)
                     self.state = self.state + 1
             elif self.state == 5:
-                '''
-                time.sleep(1.5)
-                ser.write('q'.encode())
-                time.sleep(0.9)
-                ser.write('k'.encode())
-                time.sleep(0.9)
-                ser.write('j'.encode())
-                '''
+                self.forward_2()
                 self.park()
                 self.state = self.state + 1
             elif self.state == 6:
@@ -252,23 +245,23 @@ class myThread(threading.Thread):
 
         return prev_state
 
-    def park(self):
-        #self.cam1 = False
-        self.t2.start()
+    def forward_2(self):
         print("Forward")
         ser.write('w'.encode())
         while True:
             try:
-                center = self.center
                 green_center = self.green_center
                 x_diff = self.green_dir[0]
-                if x_diff > 10 and green_center != (0,0):
+                if self.radius > 3:
+                    break
+                elif x_diff > 10 and green_center != (0,0):
                     # Too far right
                     print("Slide left")
                     ser.write('p'.encode())
                     ser.write('g'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
+                    ser.write('w'.encode())
                 elif x_diff < -10 and green_center != (0,0):
                     # Too far left
                     print("Slide right")
@@ -276,6 +269,20 @@ class myThread(threading.Thread):
                     ser.write('t'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
+                    ser.write('w'.encode())
+            except:
+                pass
+
+        print("Arrived")
+
+    def park(self):
+        self.cam1 = False
+        self.t2.start()
+        print("Forward")
+        ser.write('w'.encode())
+        while True:
+            try:
+                center = self.center
                 if center != (0,0):
                     print(center)
                     break
