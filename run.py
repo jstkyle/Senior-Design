@@ -280,8 +280,7 @@ class myThread(threading.Thread):
                 if self.radius > 21:
                     print(self.radius)
                     break
-                elif x_diff < -10 and x_diff > 10 and green_center != (0,0):
-                    print("Should align")
+                elif (x_diff < -10 or x_diff > 10) and green_center != (0,0):
                     ser.write('p'.encode())
                     self.align_2()
                     ser.write('w'.encode())
