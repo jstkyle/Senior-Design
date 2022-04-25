@@ -235,14 +235,14 @@ class myThread(threading.Thread):
                         print("Adjust")
                         try:
                             x_diff = self.green_dir[0]
-                            if x_diff > 20:
+                            if x_diff > 30:
                                 # right rotate
                                 print("right rotate")
                                 ser.write('t'.encode())
                                 time.sleep(0.1)
                                 ser.write('p'.encode())
                                 time.sleep(0.2)
-                            elif x_diff < -20:
+                            elif x_diff < -10:
                                 # left rotate
                                 print("left rotate")
                                 ser.write('g'.encode())
