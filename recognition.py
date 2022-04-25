@@ -20,15 +20,6 @@ def detect_blue(frame):
 
     return mask
 
-def detect_green(frame):
-    # filter for green
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_green = np.array([40, 80, 100])
-    upper_green = np.array([85, 255, 255])
-    mask = cv2.inRange(hsv, lower_green, upper_green)
-
-    return mask
-
 def detect_circle(blur):
     mask = detect_blue(blur)
     # Find contours
@@ -40,14 +31,23 @@ def detect_circle(blur):
         if cv2.contourArea(c) > 5000:
             #print(cv2.contourArea(c))
             perimeter = cv2.arcLength(c, True)
-            approx = cv2.approxPolyDP(c, 0.01 * perimeter, True)
-            if len(approx) > 3:
+            approx = cv2.approxPolyDP(c, 0.02 * perimeter, True)
+            if len(approx) > 5:
                 center, radius = cv2.minEnclosingCircle(c)
                 #cv2.circle(frame, np.int0(center), int(radius), (0,255,0), thickness=2)
                 #cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
                 return center
 
     return (0,0)
+
+def detect_green(frame):
+    # filter for green
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    lower_green = np.array([40, 80, 100])
+    upper_green = np.array([85, 255, 255])
+    mask = cv2.inRange(hsv, lower_green, upper_green)
+
+    return mask
 
 def detect_circle_green(blur):
     mask = detect_green(blur)
@@ -61,8 +61,8 @@ def detect_circle_green(blur):
         if cv2.contourArea(c) > 300:
             print(cv2.contourArea(c))
             perimeter = cv2.arcLength(c, True)
-            approx = cv2.approxPolyDP(c, 0.04 * perimeter, True)
-            if len(approx) > 5:
+            approx = cv2.approxPolyDP(c, 0.01 * perimeter, True)
+            if len(approx) > 3:
                 center, radius = cv2.minEnclosingCircle(c)
                 #cv2.circle(frame, np.int0(center), int(radius), (0,255,0), thickness=2)
                 #cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
