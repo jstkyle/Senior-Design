@@ -214,7 +214,7 @@ class myThread(threading.Thread):
                 
                 #print(side)
                 if entry is True:
-                    self.align()
+                    #self.align()
                     break
                     '''
                     print("Entry 0")
