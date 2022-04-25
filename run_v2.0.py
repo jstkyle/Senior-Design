@@ -254,7 +254,7 @@ class myThread(threading.Thread):
                         except:
                             pass
                         ser.write('w'.encode())
-                        time.sleep(1)
+                        time.sleep(2)
                     ser.write('w'.encode())
             except:
                 pass
