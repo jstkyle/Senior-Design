@@ -90,19 +90,16 @@ class myThread(threading.Thread):
                 self.state = self.state + 1
             elif self.state == 2:
                 self.align()
-                if prev_state == 4:
-                    prev_state = 2
-                    self.state = 4
-                else:
-                    self.state = self.state + 1
+                self.state = self.state + 1
             elif self.state == 3:
                 self.forward()
                 self.state = self.state + 1
             elif self.state == 4:
                 self.corr_entry()
                 print("End state 4!!!!!!!")
+                time.sleep(0.5)
                 ser.write('p'.encode())
-                time.sleep(1)
+                time.sleep(0.5)
                 self.state = self.state + 1
             elif self.state == 5:
                 self.forward_2()
@@ -217,7 +214,7 @@ class myThread(threading.Thread):
                     ser.write('p'.encode())
             except:
                 pass
-        ser.write('p'.encode())
+
 
     def forward_2(self):
         print("Forward_2")
