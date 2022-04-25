@@ -316,6 +316,7 @@ class myThread(threading.Thread):
                     print("Arrive at target.")
                     ser.write('w'.encode())
                     time.sleep(0.5)
+                    ser.write('p'.encode())
                     print("Lift up")
                     ser.write('q'.encode())
                     time.sleep(1.1)
