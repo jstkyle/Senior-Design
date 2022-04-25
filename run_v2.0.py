@@ -204,19 +204,16 @@ class myThread(threading.Thread):
     def corr_entry(self):
         print("Aligning...")
         while True:
-            try:
-                #side = self.side
-                entry = self.entry
-                
-                if entry is True:
-                    break
-                else:   
-                    try:
-                        ser.write('l'.encode())
-                    except:
-                        pass
-            except:
-                pass
+            #side = self.side
+            entry = self.entry
+            
+            if entry is True:
+                break
+            else:   
+                try:
+                    ser.write('l'.encode())
+                except:
+                    pass
         ser.write('p'.encode())
 
     def forward_2(self):
