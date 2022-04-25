@@ -259,7 +259,6 @@ class myThread(threading.Thread):
                 elif (x_diff < -10 or x_diff > 10) and green_center != (0,0):
                     ser.write('p'.encode())
                     time.sleep(0.5)
-                    '''
                     while True:
                         print("Adjust")
                         try:
@@ -281,7 +280,6 @@ class myThread(threading.Thread):
                                 break
                         except:
                             pass
-                    '''
                     ser.write('w'.encode())
             except:
                 pass
