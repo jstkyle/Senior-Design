@@ -138,7 +138,7 @@ class myThread(threading.Thread):
         while True:
             try:
                 poles = self.pole_cnts
-                print(len(poles))
+                #print(len(poles))
                 if len(poles) > 1:
                     break
             except:
@@ -162,7 +162,7 @@ class myThread(threading.Thread):
         while True:
             try:
                 target = self.target
-                print(target)
+                #print(target)
                 if target > -10:
                     # right rotate
                     ser.write('t'.encode())
