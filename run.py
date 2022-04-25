@@ -259,16 +259,18 @@ class myThread(threading.Thread):
                     print("Slide left")
                     ser.write('p'.encode())
                     ser.write('g'.encode())
-                    time.sleep(0.1)
+                    time.sleep(0.3)
                     ser.write('p'.encode())
+                    time.sleep(0.3)
                     ser.write('w'.encode())
                 elif x_diff < -10 and green_center != (0,0):
                     # Too far left
                     print("Slide right")
                     ser.write('p'.encode())
                     ser.write('t'.encode())
-                    time.sleep(0.1)
+                    time.sleep(0.3)
                     ser.write('p'.encode())
+                    time.sleep(0.3)
                     ser.write('w'.encode())
             except:
                 pass
