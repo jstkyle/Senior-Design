@@ -193,6 +193,7 @@ class myThread(threading.Thread):
                 dist = self.dist
                 #print(dist)
                 if dist <= 90:
+                    ser.write('p'.encode())
                     while True:
                         try:
                             side = self.side
