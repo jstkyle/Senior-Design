@@ -205,15 +205,11 @@ class myThread(threading.Thread):
         print("Aligning...")
         while True:
             try:
-                side = self.side
+                #side = self.side
                 entry = self.entry
                 
                 if entry is True:
-                    try:
-                        ser.write('p'.encode())
-                        break
-                    except:
-                        pass
+                    break
                 else:   
                     try:
                         ser.write('l'.encode())
@@ -221,8 +217,10 @@ class myThread(threading.Thread):
                         pass
             except:
                 pass
+        ser.write('p'.encode())
 
     def forward_2(self):
+        ser.write('p'.encode())
         print("Forward_2")
         ser.write('w'.encode())
         while True:
