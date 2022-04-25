@@ -38,7 +38,7 @@ while True:
     mid_y = int(frame.shape[0]/2)
     
     blur = cv2.GaussianBlur(frame, (5,5), 0)
-    mask = rec.detect_green(blur)
+    mask = rec.detect_blue(blur)
     center = rec.detect_circle(blur)
     #center, radius = rec.detect_circle_green(blur)
     point = (0,0)
