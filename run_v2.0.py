@@ -289,12 +289,12 @@ class myThread(threading.Thread):
                 nav = []
                 x_diff = self.dir[0]
                 y_diff = self.dir[1]
-                if x_diff < -100:
+                if x_diff < -120:
                     print("Go backward")
                     ser.write('s'.encode())
                     time.sleep(0.2)
                     ser.write('p'.encode())
-                elif x_diff > 60:
+                elif x_diff > 40:
                     print("Go forward")
                     ser.write('w'.encode())
                     time.sleep(0.2)
