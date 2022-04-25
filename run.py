@@ -177,13 +177,13 @@ class myThread(threading.Thread):
                 print(target)
                 if target > -10:
                     # right rotate
-                    ser.write('c'.encode())
+                    ser.write('t'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
                     time.sleep(0.1)
                 elif target < -15:
                     # left rotate
-                    ser.write('z'.encode())
+                    ser.write('g'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
                     time.sleep(0.1)
@@ -266,14 +266,14 @@ class myThread(threading.Thread):
                     # Too far right
                     print("Slide left")
                     ser.write('p'.encode())
-                    ser.write('a'.encode())
+                    ser.write('g'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
                 elif x_diff < -10 and green_center != (0,0):
                     # Too far left
                     print("Slide right")
                     ser.write('p'.encode())
-                    ser.write('d'.encode())
+                    ser.write('t'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
                 if center != (0,0):
