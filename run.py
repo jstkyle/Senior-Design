@@ -276,6 +276,7 @@ class myThread(threading.Thread):
             try:
                 green_center = self.green_center
                 x_diff = self.green_dir[0]
+                print(x_diff)
                 if self.radius > 21:
                     print(self.radius)
                     break
