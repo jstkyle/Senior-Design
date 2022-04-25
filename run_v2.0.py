@@ -200,7 +200,7 @@ class myThread(threading.Thread):
                             
                             if entry is True:
                                 print('HElloooooooooooooooo')
-                                ser.write('p'.encode())
+                                ser.write('g'.encode())
                                 break
                             else:   
                                 try:
