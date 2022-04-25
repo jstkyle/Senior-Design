@@ -293,6 +293,7 @@ class myThread(threading.Thread):
     def park(self):
         self.cam1 = False
         self.t2.start()
+        time.sleep(2)
         print("Forward")
         ser.write('w'.encode())
         while True:
