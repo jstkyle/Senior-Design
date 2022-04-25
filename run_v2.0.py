@@ -210,14 +210,10 @@ class myThread(threading.Thread):
                 
                 if entry is True:
                     break
-                else:   
-                    try:
-                        ser.write('l'.encode())
-                        time.sleep(5)
-                        ser.write('p'.encode())
-
-                    except:
-                        pass
+                else:
+                    ser.write('l'.encode())
+                    time.sleep(2)
+                    ser.write('p'.encode())
             except:
                 pass
         ser.write('p'.encode())
