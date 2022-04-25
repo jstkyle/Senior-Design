@@ -211,6 +211,7 @@ class myThread(threading.Thread):
                 if entry is True:
                     break
                 else:
+                    print("else")
                     ser.write('g'.encode())
                     time.sleep(2)
                     ser.write('p'.encode())
