@@ -193,6 +193,21 @@ class myThread(threading.Thread):
                 dist = self.dist
                 #print(dist)
                 if dist <= 90:
+                    while True:
+                        try:
+                            side = self.side
+                            entry = self.entry
+                            
+                            if entry is True:
+                                ser.write('p'.encode())
+                                break
+                            else:   
+                                try:
+                                    ser.write('l'.encode())
+                                except:
+                                    pass
+                        except:
+                            pass
                     break
             except:
                 pass
@@ -201,6 +216,7 @@ class myThread(threading.Thread):
         ser.write('p'.encode())
         time.sleep(1)
         #-----------
+        """
         print("Aligning...")
         while True:
             try:
@@ -217,7 +233,7 @@ class myThread(threading.Thread):
             except:
                 pass
         ser.write('p'.encode())
-
+        """
     def corr_entry(self):
         print("Aligning...")
         while True:
