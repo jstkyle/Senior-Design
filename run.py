@@ -32,7 +32,7 @@ class myThread(threading.Thread):
     def front_cam(self):
 
         # Start camera
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(2)
         # Check if the webcam is opened correctly
         if not cap.isOpened():
             raise IOError("Cannot open webcam")
@@ -61,7 +61,7 @@ class myThread(threading.Thread):
     def head_cam(self):
 
         # Start camera
-        cap = cv2.VideoCapture(2)
+        cap = cv2.VideoCapture(0)
         # Check if the webcam is opened correctly
         if not cap.isOpened():
             raise IOError("Cannot open webcam")
@@ -266,8 +266,7 @@ class myThread(threading.Thread):
                     break
             except:
                 pass
-        print("Aligned with midpoint!!!!!!!")
-        ser.write('p'.encode())
+        print("Aligned with midpoint!!!!!!!")\
 
     def forward_2(self):
         print("Forward_2")
