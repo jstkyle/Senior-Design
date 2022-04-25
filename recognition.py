@@ -131,7 +131,7 @@ def is_entry(cnts):
         rect1 = cv2.boundingRect(cnts[0])
         rect2 = cv2.boundingRect(cnts[1])
 
-        if rect1[3] > rect2[3] * 0.98 and rect1[3] < rect2[3] * 1.02:
+        if rect1[3] > rect2[3] * 0.9 and rect1[3] < rect2[3] * 1.1:
             return True
     
     return False

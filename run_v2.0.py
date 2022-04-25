@@ -99,7 +99,7 @@ class myThread(threading.Thread):
                 self.forward()
                 self.state = self.state + 1
             elif self.state == 4:
-                prev_state = self.corr_entry()
+                self.corr_entry()
                 print("End state 4!!!!!!!")
                 ser.write('p'.encode())
                 time.sleep(1)
@@ -203,17 +203,14 @@ class myThread(threading.Thread):
 
     def corr_entry(self):
         print("Aligning...")
-        prev_state = 0
         while True:
             try:
                 side = self.side
                 entry = self.entry
                 
-                #print(side)
                 if entry is True:
                     try:
                         ser.write('p'.encode())
-                        #self.align()
                         break
                     except:
                         pass
@@ -224,8 +221,6 @@ class myThread(threading.Thread):
                         pass
             except:
                 pass
-
-        return prev_state
 
     def forward_2(self):
         print("Forward_2")
