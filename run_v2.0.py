@@ -96,6 +96,7 @@ class myThread(threading.Thread):
                 self.state = self.state + 1
             elif self.state == 4:
                 self.corr_entry()
+                self.align()
                 print("End state 4!!!!!!!")
                 time.sleep(0.5)
                 ser.write('p'.encode())
