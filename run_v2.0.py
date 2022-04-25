@@ -222,9 +222,9 @@ class myThread(threading.Thread):
             try:
                 green_center = self.green_center
                 x_diff = self.green_dir[0]
-                #print(self.radius)
+                print(self.radius)
                 #print(f"x_diff: {x_diff}, center: {green_center}")
-                if self.radius > 17.5:
+                if self.radius > 17:
                     #print(self.radius)
                     break
                 elif (x_diff < -20 or x_diff > 20) and green_center != (0,0):
