@@ -319,22 +319,22 @@ class myThread(threading.Thread):
                 if x_diff < -80:
                     print("Go backward")
                     ser.write('s'.encode())
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     ser.write('p'.encode())
                 elif x_diff > 80:
                     print("Go forward")
                     ser.write('w'.encode())
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     ser.write('p'.encode())
                 elif y_diff < -80:
                     print("Go right")
                     ser.write('d'.encode())
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     ser.write('p'.encode())
                 elif y_diff > 80:
                     print("Go left")
                     ser.write('a'.encode())
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     ser.write('p'.encode())
                 else:
                     print("Arrive at target.")
