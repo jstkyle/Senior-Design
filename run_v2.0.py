@@ -99,7 +99,7 @@ class myThread(threading.Thread):
                 self.forward()
                 self.state = self.state + 1
             elif self.state == 4:
-                self.corr_entry()
+                #self.corr_entry()
                 print("End state 4!!!!!!!")
                 ser.write('p'.encode())
                 time.sleep(1)
@@ -200,20 +200,40 @@ class myThread(threading.Thread):
         print("Arrive at target.")
         ser.write('p'.encode())
         time.sleep(1)
+        #-----------
+        print("Aligning...")
+        while True:
+            try:
+                side = self.side
+                entry = self.entry
+                
+                if entry is True:
+                    break
+                else:   
+                    try:
+                        ser.write('l'.encode())
+                    except:
+                        pass
+            except:
+                pass
+        ser.write('p'.encode())
 
     def corr_entry(self):
         print("Aligning...")
         while True:
-            #side = self.side
-            entry = self.entry
-            
-            if entry is True:
-                break
-            else:   
-                try:
-                    ser.write('l'.encode())
-                except:
-                    pass
+            try:
+                side = self.side
+                entry = self.entry
+                
+                if entry is True:
+                    break
+                else:   
+                    try:
+                        ser.write('l'.encode())
+                    except:
+                        pass
+            except:
+                pass
         ser.write('p'.encode())
 
     def forward_2(self):
