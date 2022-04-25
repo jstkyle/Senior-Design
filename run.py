@@ -256,7 +256,7 @@ class myThread(threading.Thread):
                 if self.radius > 21:
                     #print(self.radius)
                     break
-                elif (x_diff < -10 or x_diff > 10) and green_center != (0,0):
+                elif (x_diff < -20 or x_diff > 20) and green_center != (0,0):
                     ser.write('p'.encode())
                     time.sleep(0.5)
                     while True:
