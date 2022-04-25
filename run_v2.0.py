@@ -52,6 +52,8 @@ class myThread(threading.Thread):
             self.entry = rec.is_entry(self.pole_cnts)
             midpoint = rec.steer(self.midpoints)
             self.target = rec.dash(frame, midpoint)
+            self.green_center, self.radius = rec.detect_circle_green(blur)
+            self.green_dir = rec.park_dir(frame, self.green_center)
             
         cap.release()
         cv2.destroyAllWindows()
@@ -106,14 +108,7 @@ class myThread(threading.Thread):
                     time.sleep(3)
                     self.state = self.state + 1
             elif self.state == 5:
-                '''
-                time.sleep(1.5)
-                ser.write('q'.encode())
-                time.sleep(0.9)
-                ser.write('k'.encode())
-                time.sleep(0.9)
-                ser.write('j'.encode())
-                '''
+                self.forward_2()
                 self.park()
                 self.state = self.state + 1
             elif self.state == 6:
@@ -174,11 +169,13 @@ class myThread(threading.Thread):
                 target = self.target
                 print(target)
                 if target > -10:
+                    # right rotate
                     ser.write('t'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
                     time.sleep(0.1)
                 elif target < -15:
+                    # left rotate
                     ser.write('g'.encode())
                     time.sleep(0.1)
                     ser.write('p'.encode())
@@ -217,7 +214,8 @@ class myThread(threading.Thread):
                 
                 #print(side)
                 if entry is True:
-                    self.align()
+                    ser.write('p'.encode())
+                    #self.align()
                     break
                     '''
                     print("Entry 0")
@@ -229,28 +227,64 @@ class myThread(threading.Thread):
                     if entry_confirm is True:
                         break
                     '''
-                elif side == "left":
-                    print("slide right")
-                    ser.write('d'.encode()) # move right
-                    time.sleep(0.2)
-                    ser.write('p'.encode())
-                    prev_state = 4
-                    break
-                elif side == "right":
-                    print("slide left")
-                    ser.write('a'.encode()) # move left
-                    time.sleep(0.2)
-                    ser.write('p'.encode())
-                    prev_state = 4
-                    break
+                else:
+                    ser.write('w'.encode())
             except:
                 pass
 
         return prev_state
 
+    def forward_2(self):
+        print("Forward_2")
+        ser.write('w'.encode())
+        while True:
+            try:
+                green_center = self.green_center
+                x_diff = self.green_dir[0]
+                print(self.radius)
+                #print(f"x_diff: {x_diff}, center: {green_center}")
+                if self.radius > 19:
+                    #print(self.radius)
+                    break
+                elif (x_diff < -20 or x_diff > 20) and green_center != (0,0):
+                    ser.write('p'.encode())
+                    time.sleep(0.5)
+                    while True:
+                        print("Adjust")
+                        try:
+                            x_diff = self.green_dir[0]
+                            if x_diff > 20:
+                                # right rotate
+                                print("right rotate")
+                                ser.write('t'.encode())
+                                time.sleep(0.1)
+                                ser.write('p'.encode())
+                                time.sleep(0.2)
+                            elif x_diff < -20:
+                                # left rotate
+                                print("left rotate")
+                                ser.write('g'.encode())
+                                time.sleep(0.1)
+                                ser.write('p'.encode())
+                                time.sleep(0.2)
+                            else:
+                                break
+                        except:
+                            pass
+                        ser.write('w'.encode())
+                        time.sleep(1)
+                    ser.write('w'.encode())
+            except:
+                pass
+        
+        print("Arrived_2")
+        ser.write('p'.encode())
+        time.sleep(2)
+
     def park(self):
         self.cam1 = False
         self.t2.start()
+        time.sleep(2)
         print("Forward")
         ser.write('w'.encode())
         while True:
@@ -276,22 +310,22 @@ class myThread(threading.Thread):
                 if x_diff < -80:
                     print("Go backward")
                     ser.write('s'.encode())
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     ser.write('p'.encode())
                 elif x_diff > 80:
                     print("Go forward")
                     ser.write('w'.encode())
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     ser.write('p'.encode())
-                if y_diff < -80:
+                elif y_diff < -80:
                     print("Go right")
                     ser.write('d'.encode())
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     ser.write('p'.encode())
                 elif y_diff > 80:
                     print("Go left")
                     ser.write('a'.encode())
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     ser.write('p'.encode())
                 else:
                     print("Arrive at target.")
