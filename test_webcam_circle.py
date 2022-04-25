@@ -39,7 +39,8 @@ while True:
     
     blur = cv2.GaussianBlur(frame, (5,5), 0)
     #mask = rec.detect_green(blur)
-    center, radius = rec.detect_circle_green(blur)
+    center = rec.detect_circle(blur)
+    #center, radius = rec.detect_circle_green(blur)
     point = (0,0)
     dir = rec.park_dir(frame, center)
     '''
