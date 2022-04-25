@@ -245,6 +245,30 @@ class myThread(threading.Thread):
 
         return prev_state
 
+    def align_2(self):
+        print("Align with midpoint")
+        while True:
+            try:
+                x_diff = self.green_dir[0]
+                if x_diff > 5:
+                    # right rotate
+                    ser.write('t'.encode())
+                    time.sleep(0.1)
+                    ser.write('p'.encode())
+                    time.sleep(0.1)
+                elif sdiff < -5:
+                    # left rotate
+                    ser.write('g'.encode())
+                    time.sleep(0.1)
+                    ser.write('p'.encode())
+                    time.sleep(0.1)
+                else:
+                    break
+            except:
+                pass
+        print("Aligned with midpoint!!!!!!!")
+        ser.write('p'.encode())
+
     def forward_2(self):
         print("Forward")
         ser.write('w'.encode())
@@ -254,23 +278,8 @@ class myThread(threading.Thread):
                 x_diff = self.green_dir[0]
                 if self.radius > 21:
                     break
-                elif x_diff < -10 and green_center != (0,0):
-                    # Too far right
-                    print("Slide left")
-                    ser.write('p'.encode())
-                    ser.write('g'.encode())
-                    time.sleep(0.3)
-                    ser.write('p'.encode())
-                    time.sleep(0.3)
-                    ser.write('w'.encode())
-                elif x_diff > 10 and green_center != (0,0):
-                    # Too far left
-                    print("Slide right")
-                    ser.write('p'.encode())
-                    ser.write('t'.encode())
-                    time.sleep(0.3)
-                    ser.write('p'.encode())
-                    time.sleep(0.3)
+                elif x_diff < -10 and x_diff > 10 and green_center != (0,0):
+                    self.align_2()
                     ser.write('w'.encode())
             except:
                 pass
