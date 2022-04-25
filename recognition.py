@@ -40,7 +40,7 @@ def detect_circle(blur):
         if cv2.contourArea(c) > 5000:
             #print(cv2.contourArea(c))
             perimeter = cv2.arcLength(c, True)
-            approx = cv2.approxPolyDP(c, 0.04 * perimeter, True)
+            approx = cv2.approxPolyDP(c, 0.08 * perimeter, True)
             if len(approx) > 5:
                 center, radius = cv2.minEnclosingCircle(c)
                 #cv2.circle(frame, np.int0(center), int(radius), (0,255,0), thickness=2)
