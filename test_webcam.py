@@ -35,7 +35,6 @@ while True:
         break
 
     blur = cv2.GaussianBlur(frame, (5,5), 0)
-    mask = rec.detect_yellow(blur)
 
     midpoints, pole_cnts = rec.detect_poles(blur, frame)
     center = rec.detect_circle(blur)
@@ -62,7 +61,7 @@ while True:
 
     cv2.putText(frame, "FPS: " + str(round(fps)), (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255))
     cv2.putText(frame, "AVG_FPS: " + str(round(avg_fps)), (50,80), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255))
-    cv2.imshow("Frame", mask)
+    cv2.imshow("Frame", frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
