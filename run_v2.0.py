@@ -212,7 +212,7 @@ class myThread(threading.Thread):
                     break
                 else:
                     print("else")
-                    ser.write('g'.encode())
+                    ser.write('a'.encode())
                     time.sleep(2)
                     ser.write('p'.encode())
             except:
