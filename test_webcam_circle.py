@@ -38,6 +38,7 @@ while True:
     mid_y = int(frame.shape[0]/2)
     
     blur = cv2.GaussianBlur(frame, (5,5), 0)
+    mask = rec.detect_green(blur)
     center = rec.detect_circle_green(blur)
     point = (0,0)
     dir = rec.park_dir(frame, center)
@@ -47,7 +48,7 @@ while True:
         print(f"X diff: {dir[0]}")
         print(f"Y diff: {dir[1]}")
     '''
-    cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
+    cv2.circle(mask, np.int0(center), 2, (0,0,255), thickness=10)
     cv2.circle(frame, (mid_x, mid_y), 2, (255,0,0), thickness=10)
     # End time
     end = time.time()
@@ -65,7 +66,7 @@ while True:
 
     cv2.putText(frame, "FPS: " + str(round(fps)), (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255))
     cv2.putText(frame, "AVG_FPS: " + str(round(avg_fps)), (50,80), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255))
-    cv2.imshow("Frame", frame)
+    cv2.imshow("Frame", mask)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
