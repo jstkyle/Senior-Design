@@ -99,7 +99,7 @@ class myThread(threading.Thread):
                 self.forward()
                 self.state = self.state + 1
             elif self.state == 4:
-                #self.corr_entry()
+                self.corr_entry()
                 print("End state 4!!!!!!!")
                 ser.write('p'.encode())
                 time.sleep(1)
@@ -193,23 +193,6 @@ class myThread(threading.Thread):
                 dist = self.dist
                 #print(dist)
                 if dist <= 90:
-                    ser.write('p'.encode())
-                    while True:
-                        try:
-                            entry = self.entry
-                            
-                            if entry is True:
-                                print('HElloooooooooooooooo')
-                                ser.write('g'.encode())
-                                time.sleep(5)
-                                break
-                            else:   
-                                try:
-                                    ser.write('l'.encode())
-                                except:
-                                    pass
-                        except:
-                            pass
                     break
             except:
                 pass
@@ -217,25 +200,7 @@ class myThread(threading.Thread):
         print("Arrive at target.")
         ser.write('p'.encode())
         time.sleep(1)
-        #-----------
-        """
-        print("Aligning...")
-        while True:
-            try:
-                side = self.side
-                entry = self.entry
-                
-                if entry is True:
-                    break
-                else:   
-                    try:
-                        ser.write('l'.encode())
-                    except:
-                        pass
-            except:
-                pass
-        ser.write('p'.encode())
-        """
+
     def corr_entry(self):
         print("Aligning...")
         while True:
@@ -248,6 +213,9 @@ class myThread(threading.Thread):
                 else:   
                     try:
                         ser.write('l'.encode())
+                        time.sleep(5)
+                        ser.write('p'.encode())
+
                     except:
                         pass
             except:
@@ -255,7 +223,6 @@ class myThread(threading.Thread):
         ser.write('p'.encode())
 
     def forward_2(self):
-        ser.write('p'.encode())
         print("Forward_2")
         ser.write('w'.encode())
         while True:
