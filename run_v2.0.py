@@ -100,13 +100,10 @@ class myThread(threading.Thread):
                 self.state = self.state + 1
             elif self.state == 4:
                 prev_state = self.corr_entry()
-                if prev_state == 4:
-                    self.state = 2
-                else:
-                    print("End state 4!!!!!!!")
-                    ser.write('p'.encode())
-                    time.sleep(3)
-                    self.state = self.state + 1
+                print("End state 4!!!!!!!")
+                ser.write('p'.encode())
+                time.sleep(1)
+                self.state = self.state + 1
             elif self.state == 5:
                 self.forward_2()
                 self.park()
@@ -214,19 +211,12 @@ class myThread(threading.Thread):
                 
                 #print(side)
                 if entry is True:
-                    ser.write('p'.encode())
-                    #self.align()
-                    break
-                    '''
-                    print("Entry 0")
-                    entry_confirm = True
-                    for i in range(1):
-                        if self.entry is False:
-                            entry_confirm = False
-                        
-                    if entry_confirm is True:
+                    try:
+                        ser.write('p'.encode())
+                        #self.align()
                         break
-                    '''
+                    except:
+                        pass
                 else:   
                     try:
                         ser.write('l'.encode())
