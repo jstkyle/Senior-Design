@@ -5,7 +5,7 @@ import numpy as np
 def detect_yellow(frame):
     # filter for yellow
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_yellow = np.array([20, 30, 80])
+    lower_yellow = np.array([20, 50, 80])
     upper_yellow = np.array([40, 255, 255])
     mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
 
