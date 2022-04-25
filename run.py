@@ -262,6 +262,7 @@ class myThread(threading.Thread):
                     while True:
                         print("Adjust")
                         try:
+                            x_diff = self.green_dir[0]
                             if x_diff > 10:
                                 # right rotate
                                 print("right rotate")
