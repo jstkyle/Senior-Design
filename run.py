@@ -282,6 +282,8 @@ class myThread(threading.Thread):
                                 break
                         except:
                             pass
+                        ser.write('w'.encode())
+                        time.sleep(1)
                     ser.write('w'.encode())
             except:
                 pass
