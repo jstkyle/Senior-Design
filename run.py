@@ -285,14 +285,14 @@ class myThread(threading.Thread):
                     ser.write('p'.encode())
                     while True:
                         print("Adjust")
-                        if x_diff > 5:
+                        if x_diff > 10:
                             # right rotate
                             print("right rotate")
                             ser.write('t'.encode())
                             time.sleep(0.17)
                             ser.write('p'.encode())
                             time.sleep(0.1)
-                        elif x_diff < -5:
+                        elif x_diff < -10:
                             # left rotate
                             print("left rotate")
                             ser.write('g'.encode())
