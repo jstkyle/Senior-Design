@@ -171,13 +171,13 @@ class myThread(threading.Thread):
                 if target > -10:
                     # right rotate
                     ser.write('t'.encode())
-                    time.sleep(0.2)
+                    time.sleep(0.15)
                     ser.write('p'.encode())
                     time.sleep(0.1)
                 elif target < -15:
                     # left rotate
                     ser.write('g'.encode())
-                    time.sleep(0.2)
+                    time.sleep(0.15)
                     ser.write('p'.encode())
                     time.sleep(0.1)
                 else:
