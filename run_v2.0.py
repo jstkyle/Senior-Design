@@ -139,7 +139,7 @@ class myThread(threading.Thread):
             try:
                 poles = self.pole_cnts
                 print(len(poles))
-                if len(poles) > 1:
+                if len(poles) > 0:
                     break
             except:
                 pass
