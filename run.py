@@ -171,13 +171,13 @@ class myThread(threading.Thread):
                 if target > -10:
                     # right rotate
                     ser.write('t'.encode())
-                    time.sleep(0.18)
+                    time.sleep(0.1)
                     ser.write('p'.encode())
                     time.sleep(0.1)
                 elif target < -15:
                     # left rotate
                     ser.write('g'.encode())
-                    time.sleep(0.18)
+                    time.sleep(0.1)
                     ser.write('p'.encode())
                     time.sleep(0.1)
                 else:
@@ -252,7 +252,8 @@ class myThread(threading.Thread):
             try:
                 green_center = self.green_center
                 x_diff = self.green_dir[0]
-                print(f"x_diff: {x_diff}, center: {green_center}")
+                print(self.radius)
+                #print(f"x_diff: {x_diff}, center: {green_center}")
                 if self.radius > 21:
                     #print(self.radius)
                     break
@@ -267,14 +268,14 @@ class myThread(threading.Thread):
                                 # right rotate
                                 print("right rotate")
                                 ser.write('t'.encode())
-                                time.sleep(0.17)
+                                time.sleep(0.1)
                                 ser.write('p'.encode())
                                 time.sleep(0.2)
                             elif x_diff < -20:
                                 # left rotate
                                 print("left rotate")
                                 ser.write('g'.encode())
-                                time.sleep(0.17)
+                                time.sleep(0.1)
                                 ser.write('p'.encode())
                                 time.sleep(0.2)
                             else:
