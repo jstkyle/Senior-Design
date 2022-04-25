@@ -252,12 +252,14 @@ class myThread(threading.Thread):
                 x_diff = self.green_dir[0]
                 if x_diff > 5:
                     # right rotate
+                    print("right rotate")
                     ser.write('t'.encode())
                     time.sleep(0.17)
                     ser.write('p'.encode())
                     time.sleep(0.1)
                 elif x_diff < -5:
                     # left rotate
+                    print("left rotate")
                     ser.write('g'.encode())
                     time.sleep(0.17)
                     ser.write('p'.encode())
@@ -266,7 +268,7 @@ class myThread(threading.Thread):
                     break
             except:
                 pass
-        print("Aligned with midpoint!!!!!!!")\
+        print("Aligned with midpoint!!!!!!!")
 
     def forward_2(self):
         print("Forward_2")
@@ -281,7 +283,24 @@ class myThread(threading.Thread):
                     break
                 elif (x_diff < -10 or x_diff > 10) and green_center != (0,0):
                     ser.write('p'.encode())
-                    self.align_2()
+                    while True:
+                        print("Adjust")
+                        if x_diff > 5:
+                            # right rotate
+                            print("right rotate")
+                            ser.write('t'.encode())
+                            time.sleep(0.17)
+                            ser.write('p'.encode())
+                            time.sleep(0.1)
+                        elif x_diff < -5:
+                            # left rotate
+                            print("left rotate")
+                            ser.write('g'.encode())
+                            time.sleep(0.17)
+                            ser.write('p'.encode())
+                            time.sleep(0.1)
+                        else:
+                            break
                     ser.write('w'.encode())
             except:
                 pass
