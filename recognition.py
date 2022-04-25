@@ -59,7 +59,7 @@ def detect_circle_green(blur):
     for c in cnts:
         
         if cv2.contourArea(c) > 50:
-            print(cv2.contourArea(c))
+            #print(cv2.contourArea(c))
             perimeter = cv2.arcLength(c, True)
             approx = cv2.approxPolyDP(c, 0.01 * perimeter, True)
             if len(approx) > 3:
