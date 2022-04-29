@@ -46,7 +46,7 @@ def detect_circle(blur):
 def detect_green(frame):
     # filter for green
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_green = np.array([38, 70, 50])
+    lower_green = np.array([40, 30, 50])
     upper_green = np.array([90, 255, 255])
     mask = cv2.inRange(hsv, lower_green, upper_green)
 
@@ -65,7 +65,7 @@ def detect_circle_green(blur):
             #print(cv2.contourArea(c))
             perimeter = cv2.arcLength(c, True)
             approx = cv2.approxPolyDP(c, 0.01 * perimeter, True)
-            if len(approx) > 10:
+            if len(approx) > 9:
                 center, radius = cv2.minEnclosingCircle(c)
                 #cv2.circle(frame, np.int0(center), int(radius), (0,255,0), thickness=2)
                 #cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
