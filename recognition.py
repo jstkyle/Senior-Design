@@ -14,6 +14,27 @@ def detect_yellow(frame):
 
     return mask
 
+def detect_circle_yellow(blur):
+    mask = detect_yellow(blur)
+    # Find contours
+    cnts, hier = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    # Extract contours depending on OpenCV version
+    #cnts = cnts[0] if len(cnts) == 2 else cnts[1]
+    # Iterate through contours and filter by the number of vertices 
+    for c in cnts:
+        
+        if cv2.contourArea(c) > 50:
+            #print(cv2.contourArea(c))
+            perimeter = cv2.arcLength(c, True)
+            approx = cv2.approxPolyDP(c, 0.01 * perimeter, True)
+            if len(approx) > 10:
+                center, radius = cv2.minEnclosingCircle(c)
+                #cv2.circle(frame, np.int0(center), int(radius), (0,255,0), thickness=2)
+                #cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
+                return center, radius
+
+    return (0,0), 0
+
 def detect_blue(frame):
     # filter for blue
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)

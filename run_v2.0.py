@@ -52,7 +52,7 @@ class myThread(threading.Thread):
             self.entry = rec.is_entry(self.pole_cnts)
             midpoint = rec.steer(self.midpoints)
             self.target = rec.dash(frame, midpoint)
-            self.green_center, self.radius = rec.detect_circle_green(blur)
+            self.green_center, self.radius = rec.detect_circle_yeloow(blur)
             self.green_dir = rec.park_dir(frame, self.green_center)
             
         cap.release()
