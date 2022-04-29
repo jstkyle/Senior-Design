@@ -14,8 +14,17 @@ def detect_yellow(frame):
 
     return mask
 
+def detect_yellow_2(frame):
+    # filter for yellow
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    lower_yellow = np.array([23, 60, 60])
+    upper_yellow = np.array([40, 255, 255])
+    mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
+
+    return mask
+
 def detect_circle_yellow(blur):
-    mask = detect_yellow(blur)
+    mask = detect_yellow_2(blur)
     # Find contours
     cnts, hier = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     # Extract contours depending on OpenCV version
