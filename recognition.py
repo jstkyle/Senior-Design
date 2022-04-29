@@ -14,36 +14,6 @@ def detect_yellow(frame):
 
     return mask
 
-def detect_yellow_2(frame):
-    # filter for yellow
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_yellow = np.array([10, 60, 60])
-    upper_yellow = np.array([40, 255, 255])
-    mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
-
-    return mask
-
-def detect_circle_yellow(blur):
-    mask = detect_yellow_2(blur)
-    # Find contours
-    cnts, hier = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    # Extract contours depending on OpenCV version
-    #cnts = cnts[0] if len(cnts) == 2 else cnts[1]
-    # Iterate through contours and filter by the number of vertices 
-    for c in cnts:
-        
-        if cv2.contourArea(c) > 50:
-            #print(cv2.contourArea(c))
-            perimeter = cv2.arcLength(c, True)
-            approx = cv2.approxPolyDP(c, 0.01 * perimeter, True)
-            if len(approx) > 10:
-                center, radius = cv2.minEnclosingCircle(c)
-                #cv2.circle(frame, np.int0(center), int(radius), (0,255,0), thickness=2)
-                #cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
-                return center, radius
-
-    return (0,0), 0
-
 def detect_blue(frame):
     # filter for blue
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -76,7 +46,7 @@ def detect_circle(blur):
 def detect_green(frame):
     # filter for green
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_green = np.array([45, 60, 60])
+    lower_green = np.array([38, 70, 50])
     upper_green = np.array([90, 255, 255])
     mask = cv2.inRange(hsv, lower_green, upper_green)
 
@@ -95,7 +65,7 @@ def detect_circle_green(blur):
             #print(cv2.contourArea(c))
             perimeter = cv2.arcLength(c, True)
             approx = cv2.approxPolyDP(c, 0.01 * perimeter, True)
-            if len(approx) > 11:
+            if len(approx) > 10:
                 center, radius = cv2.minEnclosingCircle(c)
                 #cv2.circle(frame, np.int0(center), int(radius), (0,255,0), thickness=2)
                 #cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
