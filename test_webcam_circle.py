@@ -39,8 +39,8 @@ while True:
     
     blur = cv2.GaussianBlur(frame, (5,5), 0)
     #mask = rec.detect_blue(blur)
-    center = rec.detect_circle(blur)
-    #center, radius = rec.detect_circle_green(blur)
+    #center = rec.detect_circle(blur)
+    center, radius = rec.detect_circle_green(blur)
     point = (0,0)
     dir = rec.park_dir(frame, center)
     '''
@@ -50,7 +50,7 @@ while True:
         print(f"X diff: {dir[0]}")
         print(f"Y diff: {dir[1]}")
         '''
-    #print(radius)
+    print(radius)
     cv2.circle(frame, np.int0(center), 2, (0,0,255), thickness=10)
     cv2.circle(frame, (mid_x, mid_y), 2, (255,0,0), thickness=10)
     # End time
