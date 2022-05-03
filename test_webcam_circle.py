@@ -5,7 +5,7 @@ import numpy as np
 
 
 # Start camera
-cap = cv2.VideoCapture(2)
+cap = cv2.VideoCapture(0)
 #cap.set(cv2.CAP_PROP_FPS, 10)
 
 fps = cap.get(cv2.CAP_PROP_FPS)
@@ -40,7 +40,7 @@ while True:
     blur = cv2.GaussianBlur(frame, (5,5), 0)
     #mask = rec.detect_green(blur)
     #center = rec.detect_circle(bDlur)
-    center, radius = rec.detect_circle_blue(blur)
+    center, radius = rec.detect_circle(blur)
     point = (0,0)
     dir = rec.park_dir(frame, center)
     '''
