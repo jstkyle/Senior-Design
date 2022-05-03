@@ -42,7 +42,7 @@ while True:
     #center = rec.detect_circle(bDlur)
     center, radius = rec.detect_circle(blur)
     point = (0,0)
-    dir = rec.park_dir(frame, center)
+    #dir = rec.park_dir(frame, center)
     '''
     print(dir[0])
     print(center, dir)
